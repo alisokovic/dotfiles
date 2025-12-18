@@ -67,26 +67,26 @@ set_hl("PmenuSbar", { bg = colors.bg_float })
 set_hl("PmenuThumb", { bg = colors.comment })
 
 -- Window Separators
-set_hl("WinSeparator", { fg = colors.seperator, bg = colors.none }) 
-set_hl("VertSplit", { fg = colors.seperator, bg = colors.none }) 
+set_hl("WinSeparator", { fg = colors.seperator, bg = colors.none })
+set_hl("VertSplit", { fg = colors.seperator, bg = colors.none })
 
 -- StatusLine (Duskfox Style)
-set_hl("StatusLine", { fg = colors.purple, bg = colors.bg_float, bold = true }) 
-set_hl("StatusLineNC", { fg = colors.comment, bg = colors.bg_float }) 
+set_hl("StatusLine", { fg = colors.purple, bg = colors.bg_float, bold = true })
+set_hl("StatusLineNC", { fg = colors.comment, bg = colors.bg_float })
 
 -- Command Line Messages
-set_hl("MsgArea", { fg = colors.fg, bg = colors.none }) 
-set_hl("ModeMsg", { fg = colors.yellow, bold = true }) 
+set_hl("MsgArea", { fg = colors.fg, bg = colors.none })
+set_hl("ModeMsg", { fg = colors.yellow, bold = true })
 set_hl("MsgSeparator", { fg = colors.cyan, bg = colors.none })
 set_hl("MoreMsg", { fg = colors.blue, bold = true })
-set_hl("Question", { fg = colors.green, bold = true }) 
+set_hl("Question", { fg = colors.green, bold = true })
 set_hl("ErrorMsg", { fg = colors.red, bold = true })
 set_hl("WarningMsg", { fg = colors.yellow, bold = true })
-set_hl("Title", { fg = colors.blue, bold = true }) 
+set_hl("Title", { fg = colors.blue, bold = true })
 set_hl("Directory", { fg = colors.blue, bold = true })
 
 -- Cursor & Selection
-local cursor_opts = { bg = colors.none } 
+local cursor_opts = { bg = colors.none }
 if config.cursor_underline then
     cursor_opts.underline = true
     cursor_opts.sp = config.cursor_underline_color
@@ -98,7 +98,7 @@ set_hl("Visual", { bg = colors.selection })
 set_hl("Comment", { fg = colors.comment, italic = config.italic_comments })
 
 set_hl("Constant", { fg = colors.orange })
-set_hl("String", { fg = colors.green, italic = false }) 
+set_hl("String", { fg = colors.green, italic = false })
 set_hl("Character", { fg = colors.green })
 set_hl("Number", { fg = colors.orange })
 set_hl("Boolean", { fg = colors.orange, bold = true })
@@ -108,7 +108,7 @@ set_hl("Identifier", { fg = colors.fg, italic = config.italic_variables })
 set_hl("Function", { fg = colors.blue, bold = config.bold_functions, italic = config.italic_functions })
 
 -- Keywords: Lavender/Purple (Duskfox style)
-set_hl("Statement", { fg = colors.purple, italic = config.italic_keywords, bold = config.bold_keywords }) 
+set_hl("Statement", { fg = colors.purple, italic = config.italic_keywords, bold = config.bold_keywords })
 set_hl("Conditional", { fg = colors.purple, italic = config.italic_keywords, bold = config.bold_keywords })
 set_hl("Repeat", { fg = colors.purple, italic = config.italic_keywords, bold = config.bold_keywords })
 set_hl("Label", { fg = colors.purple, italic = config.italic_keywords })
@@ -116,14 +116,14 @@ set_hl("Operator", { fg = colors.cyan })
 set_hl("Keyword", { fg = colors.purple, italic = config.italic_keywords, bold = config.bold_keywords })
 set_hl("Exception", { fg = colors.purple, italic = config.italic_keywords })
 
-set_hl("PreProc", { fg = colors.magenta }) 
-set_hl("Include", { fg = colors.purple, italic = config.italic_keywords }) 
+set_hl("PreProc", { fg = colors.magenta })
+set_hl("Include", { fg = colors.purple, italic = config.italic_keywords })
 set_hl("Define", { fg = colors.purple })
 set_hl("Macro", { fg = colors.purple })
 
-set_hl("Type", { fg = colors.yellow, italic = config.italic_types }) 
+set_hl("Type", { fg = colors.yellow, italic = config.italic_types })
 set_hl("StorageClass", { fg = colors.yellow, italic = config.italic_types })
-set_hl("Structure", { fg = colors.yellow, italic = config.italic_types }) 
+set_hl("Structure", { fg = colors.yellow, italic = config.italic_types })
 set_hl("Typedef", { fg = colors.yellow, italic = config.italic_types })
 
 set_hl("Special", { fg = colors.orange })
@@ -135,26 +135,26 @@ set_hl("Todo", { fg = colors.bg_float, bg = colors.yellow, bold = true })
 -- C++
 set_hl("@variable", { fg = colors.fg, italic = config.italic_variables })
 set_hl("@variable.builtin", { fg = colors.red, italic = true }) -- this
-set_hl("@parameter", { fg = colors.fg, italic = true })       
-set_hl("@constructor", { fg = colors.yellow, bold = true }) 
+set_hl("@parameter", { fg = colors.fg, italic = true })
+set_hl("@constructor", { fg = colors.yellow, bold = true })
 
 set_hl("@function", { fg = colors.blue, bold = config.bold_functions, italic = config.italic_functions })
 set_hl("@function.builtin", { fg = colors.blue, bold = config.bold_functions })
 set_hl("@function.macro", { fg = colors.magenta })
 
 set_hl("@keyword", { fg = colors.red, italic = config.italic_keywords, bold = config.bold_keywords })
-set_hl("@keyword.function", { fg = colors.purple, italic = config.italic_keywords }) 
+set_hl("@keyword.function", { fg = colors.purple, italic = config.italic_keywords })
 set_hl("@keyword.operator", { fg = colors.purple })
 
 set_hl("@type", { fg = colors.yellow, italic = config.italic_types })
-set_hl("@type.builtin", { fg = colors.yellow, italic = config.italic_types }) 
+set_hl("@type.builtin", { fg = colors.yellow, italic = config.italic_types })
 set_hl("@namespace", { fg = colors.fg })
 
 -- Python
 set_hl("@string.escape", { fg = colors.magenta })
 set_hl("@punctuation.delimiter", { fg = colors.fg })
 set_hl("@punctuation.bracket", { fg = colors.fg })
-set_hl("@variable.parameter", { fg = colors.fg, italic = true }) 
+set_hl("@variable.parameter", { fg = colors.fg, italic = true })
 
 -- 5. LSP & Git
 set_hl("DiagnosticError", { fg = colors.red })
