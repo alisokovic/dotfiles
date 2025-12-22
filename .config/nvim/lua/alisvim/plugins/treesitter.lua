@@ -26,6 +26,7 @@ return {
             ensure_installed = {
                 "json",
                 "html",
+                "make",
                 "markdown",
                 "markdown_inline",
                 "lua",

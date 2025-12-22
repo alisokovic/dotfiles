@@ -1,13 +1,17 @@
 [user]
 	name = alisocan
 	email = alieren.tugay21@gmail.com
+
 [core]
     editor = nvim
     pager = delta
+
 [init]
     defaultBranch = main
+
 [interactive]
     diffFilter = delta --color-only
+
 [delta]
     navigate = true  # Use n and N to move between diff sections
     side-by-side = true
@@ -15,5 +19,9 @@
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
+
 [merge]
     conflictStyle = zdiff3
+
+[diff]
+    colorMoved = default
