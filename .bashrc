@@ -44,7 +44,7 @@ alias la="ls -A"
 alias l="ls -CF"
 
 alias vim=nvim
-alias fuzzy="fzf --style minimal --preview 'bat --color=always --style=numbers --line-range=:500 {}' --bind 'focus:transform-header:file --brief {}'"
+alias fuzzy="fzf --ansi --style minimal --preview 'bat --color=always --style=numbers --line-range=:500 {}' --bind 'focus:transform-header:file --brief {}'"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -55,14 +55,14 @@ fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Oh-My-Posh
-eval "$(oh-my-posh init bash --config 'zash')"
+eval "$(oh-my-posh init bash --config 'emodipt-extend')"
 
 # ------------- FZF --------------
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 
 # Use fd instead of fzf
-export FZF_DEFAULT_COMMAND="fd --hidden --color=always --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
