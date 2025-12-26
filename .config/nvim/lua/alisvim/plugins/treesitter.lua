@@ -31,6 +31,8 @@ return {
                 "markdown_inline",
                 "lua",
                 "vim",
+                "git_config",
+                "gitcommit",
                 "gitignore",
                 "vimdoc",
                 "bash",

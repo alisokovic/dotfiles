@@ -47,14 +47,21 @@ return {
                 { name = "buffer" }, -- text within current buffer
                 { name = "path" }, -- file system paths
             }),
-
             -- configure lspkind for vs-code like pictograms in completion menu
             formatting = {
                 format = lspkind.cmp_format({
-                    maxwidth = 50,
+                    maxwidth = 30,
                     ellipsis_char = "...",
                 }),
             },
+            -- This limits the height of the pop-up menu
+            window = {
+                completion = {
+                    max_height = 10,
+                    side_padding = 1,
+                    scrollbar = true,  -- Enables the scrollbar thumb
+                },
+            }
         })
     end,
 }
