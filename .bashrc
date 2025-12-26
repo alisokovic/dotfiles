@@ -37,6 +37,9 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Preview either with bat or eza depending on context
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
 # ---------- Aliases -----------
 # show more ls aliases
 alias ll="ls -alF"
@@ -44,7 +47,7 @@ alias la="ls -A"
 alias l="ls -CF"
 
 alias vim=nvim
-alias fuzzy="fzf --ansi --style minimal --preview 'bat --color=always --style=numbers --line-range=:500 {}' --bind 'focus:transform-header:file --brief {}'"
+alias fuzzy="fzf --ansi --style minimal --preview '$show_file_or_dir_preview'"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -78,7 +81,7 @@ _fzf_compgen_dir() {
     fd --type=d --hidden --exclude .git . "$1"
 }
 
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --style=numbers --line-range :500 {}'"
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # Advanced customization of fzf options via _fzf_comprun function
@@ -89,10 +92,10 @@ _fzf_comprun() {
     shift
 
     case "$command" in
-        cd)     fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-        export) fzf --preview "eval 'echo \$' {}"          "$@" ;;
-        ssh)    fzf --preview 'dig {}'                   "$@" ;;
-        *)      fzf --preview "--preview 'bat -n --color=always --line-range :500 {}'" "$@" ;;
+        cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+        export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+        ssh)          fzf --preview 'dig {}'                   "$@" ;;
+        *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
     esac
 }
 
