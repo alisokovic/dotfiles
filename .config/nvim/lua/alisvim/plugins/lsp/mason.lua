@@ -8,6 +8,7 @@ return {
                 "clangd",
                 "lua_ls",
                 "stylua",
+                "bashls",
             },
         },
         dependencies = {
