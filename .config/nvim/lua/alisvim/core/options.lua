@@ -1,46 +1,47 @@
--- Options
-local opt = vim.opt
+vim.g.netwr_banner = 0
 
-opt.relativenumber = true
-opt.number = true
+vim.opt.nu = true
+vim.opt.relativenumber = true
 
--- tabs & indentation
-opt.tabstop = 4           -- 4 spaces for tabs (prettier default)
-opt.shiftwidth = 4        -- 4 spaces for indent width
-opt.expandtab = true      -- expand tab to spaces
-opt.autoindent = true     -- copy indent from current line when starting new one
-opt.smartindent = true    -- smart auto-indent
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
-opt.wrap = false          -- disable autowrapping
+vim.opt.wrap = false
+vim.opt.inccommand = "split"
 
--- search settings
-opt.ignorecase = true     -- ignore case when searching
-opt.smartcase = true      -- if you include mixed case in your search, assumes you want case-sensitive
-opt.hlsearch = true       -- highlight search matches
-opt.incsearch = true      -- show matches as you type
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
-opt.cursorline = true     -- highlight the row where cursor is
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.laststatus = 3
 
--- Aesthetics
-opt.termguicolors = true  -- use terminal colors if exists
-opt.background = "dark"   -- use the dark version of colorscheme
-opt.signcolumn = "yes"    -- show signcolumn so that text doesn't shift
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+vim.opt.undofile = true
 
--- backspace
-opt.backspace = "indent,eol,start"  -- allow backspace on indent, end of line, or insert mode start position
+vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.opt.shortmess:append("c")
+vim.opt.clipboard:append("unnamedplus")
+vim.opt.isfname:append("@-@")
+-- vim.opt.guicursor = ""
+vim.opt.scrolloff = 4
+vim.opt.sidescrolloff = 4
 
--- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+vim.opt.colorcolumn = "0"
+vim.opt.signcolumn = "yes"
+vim.opt.cmdheight = 0
+vim.opt.termguicolors = true
+vim.opt.fillchars = { eob = " " }
 
--- split windows
-opt.splitright = true     -- split vertical window to the right
-opt.splitbelow = true     -- split horizontal window to the bottom
-
--- scrolloff
-opt.scrolloff = 4
-opt.sidescrolloff = 4
-
--- additional settings
-opt.showmatch = true      -- show matching brackets
-opt.encoding = "UTF-8"    -- set encoding
-opt.fillchars = { eob = " " }   -- hide '~' on empty lines
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    callback = function()
+        vim.hl.on_yank()
+    end
+})

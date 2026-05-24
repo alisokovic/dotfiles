@@ -1,4 +1,9 @@
-return {
-    "nvim-lua/plenary.nvim",             -- lua funtions that many plugins use
-    "christoomey/vim-tmux-navigator"     -- tmux & split-window navigation
-}
+require("alisvim.plugins.alpha")
+require("alisvim.plugins.lualine")
+require("alisvim.plugins.treesitter")
+require("alisvim.plugins.mini")
+require("alisvim.plugins.lsp")
+require("alisvim.plugins.nvim-tree")
+require("alisvim.plugins.telescope")
+require("alisvim.plugins.some_packs")
+require("alisvim.plugins.toggle-term")
