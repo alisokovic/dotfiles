@@ -10,6 +10,7 @@ require("vim._core.ui2").enable({
     },
 })
 
+vim.g.alistheme_cursor_underline = true
 vim.cmd.colorscheme "alistheme"
 
 require("alisvim.core")
