@@ -22,6 +22,11 @@ vim.keymap.set("n", "<leader>bn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 vim.keymap.set("n", "<leader>bp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 vim.keymap.set("n", "<leader>bf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+---- Node Selection (Increment/Decrement) ----
+vim.keymap.set("n", "<Tab>", "van", { remap = true, desc = "Init TS selection" })
+vim.keymap.set("x", "<Tab>", "an", { remap = true, desc  = "Expand TS selection" })
+vim.keymap.set("x", "<bs>", "in", { remap = true, desc = "Shrink TS selection" })
+
 vim.keymap.set("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "move selected lines down" })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 
