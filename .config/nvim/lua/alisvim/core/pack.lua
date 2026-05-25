@@ -19,3 +19,10 @@ vim.api.nvim_create_user_command("PackUpdate", function(opts)
         vim.pack.update()
     end
 end, { nargs = "*", desc = "Update all plugins or specific ones" })
+
+-- Build telescope-fzf-native plugin after installing the plugin
+vim.api.nvim_create_user_command("BuildFzf", function()
+    local fzf_path = vim.fn.stdpath("data") .. "/site/pack/core/opt/telescope-fzf-native.nvim"
+    vim.fn.system("make -C " .. fzf_path)
+    vim.notify("telescope-fzf-native: built", vim.log.levels.INFO)
+end, {})
