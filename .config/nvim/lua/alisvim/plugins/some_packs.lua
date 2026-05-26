@@ -11,6 +11,8 @@ vim.pack.add({
     "https://github.com/kdheepak/lazygit.nvim",
     "https://github.com/akinsho/bufferline.nvim",
     "https://github.com/szw/vim-maximizer",
+    "https://github.com/numtostr/comment.nvim",
+    "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
 })
 
 
@@ -133,3 +135,11 @@ require("bufferline").setup({
 
 ---- vim maximizer ----
 vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
+
+---- comment ----
+local comment = require("Comment")
+local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+
+comment.setup({
+    pre_hook = ts_context_commentstring.create_pre_hook()
+})
