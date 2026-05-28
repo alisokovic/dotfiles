@@ -12,6 +12,8 @@ local ensure_installed = {
     "make",
     "markdown",
     "markdown_inline",
+    "yaml",
+    "latex",
     "lua",
     "vim",
     "git_config",

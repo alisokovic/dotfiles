@@ -21,6 +21,7 @@ require("mason-lspconfig").setup({
         "clangd",
         "bashls",
         "html",
+        "marksman",
     },
     automatic_installation = true,
 })
@@ -57,6 +58,7 @@ vim.lsp.enable({
     "clangd",
     "bashls",
     "html",
+    "marksman",
 })
 
 ---- Keymaps - Attached only when an LSP connects to buffer
