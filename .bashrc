@@ -46,7 +46,12 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(oh-my-posh init bash --config 'emodipt-extend')"
 
 # Perl5
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # ------------- FZF --------------
 # Set up fzf key bindings and fuzzy completion
