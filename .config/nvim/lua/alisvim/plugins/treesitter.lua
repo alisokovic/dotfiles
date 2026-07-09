@@ -23,6 +23,7 @@ local ensure_installed = {
     "bash",
     "c",
     "cpp",
+    "doxygen",
     "python",
     "rust",
     "dockerfile",
