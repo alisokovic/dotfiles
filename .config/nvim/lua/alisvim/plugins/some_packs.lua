@@ -46,12 +46,34 @@ require("trouble").setup({
     focus = true,
 })
 
-vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>",              { desc = "Open trouble workspace diagnostics" })
-vim.keymap.set("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Open trouble document diagnostics" })
-vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<CR>",                 { desc = "Open trouble quickfix list" })
-vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>",                  { desc = "Open trouble location list" })
-vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>",      { desc = "Open symbols" })
-vim.keymap.set("n", "<leader>xt", "<cmd>Trouble todo toggle<CR>",                     { desc = "Open todos in trouble" })
+vim.keymap.set(
+    "n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>",
+    { desc = "Workspace trouble diagnostics" }
+)
+vim.keymap.set(
+    "n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+    { desc = "Buffer trouble diagnostics" }
+)
+vim.keymap.set(
+    "n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>",
+    { desc = "Trouble symbols" }
+)
+vim.keymap.set(
+    "n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+    { desc = "Trouble LSP references" }
+)
+vim.keymap.set(
+    "n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>",
+    { desc = "Trouble location list" }
+)
+vim.keymap.set(
+    "n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>",
+    { desc = "Open trouble quickfix list" }
+)
+vim.keymap.set(
+    "n", "<leader>xt", "<cmd>Trouble todo toggle<CR>",
+    { desc = "Open todos in trouble" }
+)
 
 ---- todo comments ----
 require("todo-comments").setup()
