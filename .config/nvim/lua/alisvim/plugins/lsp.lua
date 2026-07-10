@@ -33,10 +33,10 @@ vim.diagnostic.config({
     virtual_text = true,
     signs = {
         text = {
-            [severity.ERROR] = " ",
-            [severity.WARN] = " ",
-            [severity.HINT] = "󰠠 ",
-            [severity.INFO] = " ",
+            [severity.ERROR] = "",
+            [severity.WARN] = "",
+            [severity.HINT] = "󰠠",
+            [severity.INFO] = "",
         },
     },
     underline = true,
