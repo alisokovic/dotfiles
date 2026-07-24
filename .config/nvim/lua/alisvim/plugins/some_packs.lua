@@ -34,7 +34,11 @@ require("nvim-autopairs").setup({
 ---- which key ----
 vim.o.timeout = true
 vim.o.timeoutlen = 500
-require("which-key").setup()
+require("which-key").setup({
+    win = {
+        border = "rounded",
+    },
+})
 
 ---- indent blankline ----
 require("ibl").setup({

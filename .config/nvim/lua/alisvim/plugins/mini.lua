@@ -34,7 +34,11 @@ require("mini.surround").setup()
 require("mini.completion").setup({
     lsp_completion = {
         auto_setup = true,
-    }
+    },
+    window = {
+        info      = { border = "rounded" },
+        signature = { border = "rounded" },
+    },
 })
 
 ---- Mini Snippets ----
