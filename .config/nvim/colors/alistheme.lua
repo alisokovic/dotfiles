@@ -1,5 +1,3 @@
--- ~/.config/nvim/colors/alistheme.lua
-
 -- Clear existing highlights
 vim.cmd("highlight clear")
 if vim.fn.exists("syntax_on") == 1 then
@@ -11,7 +9,6 @@ vim.g.colors_name = "alistheme"
 -- Catppuccin Mocha Palette
 local palette = {
     text      = "#cdd6f4",
-    subtext1  = "#bac2de",
     subtext0  = "#a6adc8",
     overlay2  = "#9399b2",
     overlay1  = "#7f849c",
@@ -25,13 +22,11 @@ local palette = {
     mauve     = "#cba6f7",
     red       = "#f38ba8",
     dark_red  = "#c9476c",
-    maroon    = "#eba0ac",
     peach     = "#fab387",
     yellow    = "#f9e2af",
     green     = "#a6e3a1",
     teal      = "#94e2d5",
     sky       = "#89dceb",
-    sapphire  = "#74c7ec",
     blue      = "#89b4fa",
     lavender  = "#b4befe",
 
@@ -132,7 +127,9 @@ local highlights = {
     ["@keyword.import.python"]        = { fg = palette.mauve, bold = true },
     ["@string.documentation.python"]  = { fg = palette.overlay2, italic = true },
 
-    ---- Diagnostics ----
+    -- ==========================================
+    -- Diagnostics
+    -- ==========================================
     -- LSP Diagnostics (Base Groups)
     DiagnosticError              = { fg = palette.dark_red },
     DiagnosticWarn               = { fg = palette.yellow },
@@ -169,7 +166,9 @@ local highlights = {
     DiffDelete                   = { fg = palette.red, bg = palette.none },
     DiffText                     = { fg = palette.yellow, bg = palette.none },
 
-    ---- Plugins ----
+    -- ==========================================
+    -- Plugins
+    -- ==========================================
     -- Which-Key UI
     WhichKey                 = { fg = palette.blue, bold = true },
     WhichKeyGroup            = { fg = palette.pink },
