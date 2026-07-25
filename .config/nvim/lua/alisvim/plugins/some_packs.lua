@@ -6,10 +6,11 @@ vim.pack.add({
     "https://github.com/christoomey/vim-tmux-navigator",
     "https://github.com/folke/trouble.nvim",
     "https://github.com/stevearc/dressing.nvim",
+    "https://github.com/akinsho/bufferline.nvim",
+    "https://github.com/akinsho/toggleterm.nvim",
     "https://github.com/folke/todo-comments.nvim",
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/kdheepak/lazygit.nvim",
-    "https://github.com/akinsho/bufferline.nvim",
     "https://github.com/szw/vim-maximizer",
     "https://github.com/numtostr/comment.nvim",
     "https://github.com/danymat/neogen",
@@ -93,6 +94,89 @@ vim.keymap.set(
     { desc = "Open todos in trouble" }
 )
 
+---- bufferline ----
+require("bufferline").setup({
+    options = {
+        mode = "tabs",
+        separator_style = "thin",
+        show_buffer_close_icons = true,
+        show_close_icon = false,
+        always_show_bufferline = false,
+        diagnostics = "nvim_lsp",
+
+        diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and "" or ""
+            return " " .. icon .. count
+        end,
+
+        -- Align tabline cleanly with NvimTree sidebar
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                highlight = "Directory",
+                text_align = "center",
+                separator = true,
+            }
+        },
+    },
+
+    highlights = {
+    -- Transparent Bar Fill
+    fill = { bg = palette.none },
+
+    -- Unselected / Inactive Tabs (Floating Text, No Dark Boxes)
+    background             = { fg = palette.overlay1, bg = palette.none },
+    buffer_visible         = { fg = palette.subtext0, bg = palette.none },
+    close_button           = { fg = palette.overlay1, bg = palette.none },
+    close_button_visible   = { fg = palette.subtext0, bg = palette.none },
+    separator              = { fg = palette.surface0, bg = palette.none },
+    separator_visible      = { fg = palette.surface0, bg = palette.none },
+    modified               = { fg = palette.peach, bg = palette.none },
+    modified_visible       = { fg = palette.peach, bg = palette.none },
+
+    -- Active / Selected Tab
+    buffer_selected        = { fg = palette.text, bg = palette.none, bold = true },
+    close_button_selected  = { fg = palette.red, bg = palette.none },
+    separator_selected     = { fg = palette.surface0, bg = palette.none },
+    indicator_selected     = { fg = palette.mauve, bg = palette.none },
+    modified_selected      = { fg = palette.peach, bg = palette.none },
+
+    -- Diagnostics inside Tabs
+    error             = { fg = palette.red, bg = palette.none },
+    error_selected    = { fg = palette.red, bg = palette.none, bold = true },
+    warning           = { fg = palette.yellow, bg = palette.none },
+    warning_selected  = { fg = palette.yellow, bg = palette.none, bold = true },
+    },
+})
+
+---- toggle-term ----
+require("toggleterm").setup({
+    direction = "float",
+    size = function(term)
+        if term.direction == "horizontal" then
+            return 16
+        elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4
+        end
+    end,
+    shade_terminals = false,
+    highlights = {
+        FloatBorder = {
+            guifg = palette.blue,
+            guibg = palette.none,
+        },
+    },
+    float_opts = {
+        border = "curved",
+    }
+})
+
+vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>",   { desc = "vertical terminal"})
+vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "horizontal terminal" })
+vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>",      { desc = "float terminal" })
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=tab<CR>",        { desc = "terminal in new tab" })
+
 ---- todo comments ----
 require("todo-comments").setup()
 
@@ -150,61 +234,6 @@ require("gitsigns").setup({
 ---- lazygit ----
 vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "Open lazygit" })
 
----- bufferline ----
-require("bufferline").setup({
-    options = {
-        mode = "tabs",
-        separator_style = "thin",
-        show_buffer_close_icons = true,
-        show_close_icon = false,
-        always_show_bufferline = false,
-        diagnostics = "nvim_lsp",
-
-        diagnostics_indicator = function(count, level)
-            local icon = level:match("error") and "" or ""
-            return " " .. icon .. count
-        end,
-
-        -- Align tabline cleanly with NvimTree sidebar
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                highlight = "Directory",
-                text_align = "center",
-                separator = true,
-            }
-        },
-    },
-
-    highlights = {
-    -- Transparent Bar Fill
-    fill = { bg = palette.none },
-
-    -- Unselected / Inactive Tabs (Floating Text, No Dark Boxes)
-    background             = { fg = palette.overlay1, bg = palette.none },
-    buffer_visible         = { fg = palette.subtext0, bg = palette.none },
-    close_button           = { fg = palette.overlay1, bg = palette.none },
-    close_button_visible   = { fg = palette.subtext0, bg = palette.none },
-    separator              = { fg = palette.surface0, bg = palette.none },
-    separator_visible      = { fg = palette.surface0, bg = palette.none },
-    modified               = { fg = palette.peach, bg = palette.none },
-    modified_visible       = { fg = palette.peach, bg = palette.none },
-
-    -- Active / Selected Tab
-    buffer_selected        = { fg = palette.text, bg = palette.none, bold = true },
-    close_button_selected  = { fg = palette.red, bg = palette.none },
-    separator_selected     = { fg = palette.surface0, bg = palette.none },
-    indicator_selected     = { fg = palette.mauve, bg = palette.none },
-    modified_selected      = { fg = palette.peach, bg = palette.none },
-
-    -- Diagnostics inside Tabs
-    error             = { fg = palette.red, bg = palette.none },
-    error_selected    = { fg = palette.red, bg = palette.none, bold = true },
-    warning           = { fg = palette.yellow, bg = palette.none },
-    warning_selected  = { fg = palette.yellow, bg = palette.none, bold = true },
-    },
-})
 
 ---- vim maximizer ----
 vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
