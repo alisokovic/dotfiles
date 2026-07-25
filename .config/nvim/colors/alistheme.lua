@@ -15,7 +15,6 @@ local palette = {
     overlay0  = "#6c7086",
     surface1  = "#45475a",
     surface0  = "#313244",
-    seperator = "#191726",
 
     flamingo  = "#f2cdcd",
     pink      = "#f5c2e7",
@@ -43,9 +42,13 @@ local highlights = {
     LineNr       = { fg = palette.overlay0, bg = palette.none },
     CursorLineNr = { fg = palette.peach, bold = true},
 
-    -- Window Separators
-    WinSeparator = { fg = palette.seperator, bg = palette.none },
-    VertSplit    = { fg = palette.seperator, bg = palette.none },
+    -- WinBar & Window Headers
+    WinBar          = { fg = palette.text, bg = palette.none },
+    WinBarNC        = { fg = palette.subtext0, bg = palette.none },
+    StatusLine      = { fg = palette.text, bg = palette.none },
+    StatusLineNC    = { fg = palette.surface0, bg = palette.none },
+    WinSeparator    = { fg = palette.surface0, bg = palette.none },
+    VertSplit       = { fg = palette.surface0, bg = palette.none },
 
     -- Selections & Cursor line
     CursorLine   = { bg = palette.none, underline = true, sp = palette.peach },
@@ -127,6 +130,26 @@ local highlights = {
     ["@keyword.import.python"]        = { fg = palette.mauve, bold = true },
     ["@string.documentation.python"]  = { fg = palette.overlay2, italic = true },
 
+    -- ===================================================================
+    -- Messages, Command Output & UI2 Pager
+    -- ===================================================================
+    -- Command Line & Message Area
+    MsgArea         = { fg = palette.text, bg = palette.none },
+    MsgSeparator    = { fg = palette.surface0, bg = palette.none },
+    ModeMsg         = { fg = palette.subtext0, bold = true },
+    MoreMsg         = { fg = palette.blue },
+    WarningMsg      = { fg = palette.yellow, bold = true },
+    ErrorMsg        = { fg = palette.red, bold = true },
+
+    -- Output Titles & Command Headers
+    Title           = { fg = palette.mauve, bold = true },
+    Question        = { fg = palette.lavender, bold = true },
+
+    -- Shell Output & Special Text Formatting
+    Directory       = { fg = palette.blue },
+    SpecialKey      = { fg = palette.overlay0 },
+    QuickFixLine    = { fg = palette.mauve, bg = palette.surface0, bold = true },
+
     -- ==========================================
     -- Diagnostics
     -- ==========================================
@@ -202,13 +225,13 @@ local highlights = {
     GitSignsTopdelete              = { fg = palette.red, bg = palette.none },
     GitSignsUntracked              = { fg = palette.teal, bg = palette.none },
 
-    -- ===================================================================
+    -- ===========================================
     -- NvimTree Sidebar Integration
-    -- ===================================================================
+    -- ===========================================
     -- Window & Background (Fully Transparent)
     NvimTreeNormal         = { fg = palette.text, bg = palette.none },
     NvimTreeNormalNC       = { fg = palette.text, bg = palette.none },
-    NvimTreeWinSeparator   = { fg = palette.surface1, bg = palette.none },
+    NvimTreeWinSeparator   = { fg = palette.surface0, bg = palette.none },
     NvimTreeEndOfBuffer    = { fg = palette.none, bg = palette.none },
 
     -- Sidebar Cursor Bar
@@ -238,6 +261,12 @@ local highlights = {
     NvimTreeGitStaged      = { fg = palette.teal },
     NvimTreeGitMerge       = { fg = palette.flamingo },
     NvimTreeGitRenamed     = { fg = palette.mauve },
+
+    -- ===========================
+    -- LazyGit
+    -- ===========================
+    LazyGitFloat   = { fg = palette.text, bg = palette.none },
+    LazyGitBorder  = { fg = palette.blue, bg = palette.none },
 }
 
 -- Apply highlights immediately when sourced
