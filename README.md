@@ -1,6 +1,6 @@
 Dotfiles
-
 ========
+
 My own highly customized configuration files for my own use. It may give ideas for yours or you can copy any configuration altogether.
 
 Git
