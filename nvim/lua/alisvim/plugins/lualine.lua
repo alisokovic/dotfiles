@@ -50,4 +50,18 @@ require("lualine").setup({
     options = {
         theme = my_lualine_theme,
     },
+    sections = {
+        lualine_b = {
+            "branch",
+            "diff",
+            {
+                "diagnostics",
+                symbols = {
+                    error = " ",
+                    warn = " ",
+                    info = " ",
+                },
+            }
+        },
+    },
 })
