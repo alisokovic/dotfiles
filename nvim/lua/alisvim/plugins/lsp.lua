@@ -104,6 +104,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         keymap.set("n", "gd",          vim.lsp.buf.definition,              vim.tbl_extend("force", opts, { desc = "Go to definition" }))
         keymap.set("n", "<leader>gd",  "<cmd>Lspsaga peek_definition<CR>",  vim.tbl_extend("force", opts, { desc = "Lspsaga definition" }))
+        keymap.set("n", "<leader>gs",  "<cmd>Lspsaga outline<CR>",          vim.tbl_extend("force", opts, { desc = "Lspsaga outline" }))
         keymap.set("n", "gD",          vim.lsp.buf.declaration,             vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
         keymap.set("n", "gr",          vim.lsp.buf.references,              vim.tbl_extend("force", opts, { desc = "Show references" }))
         keymap.set("n", "gi",          vim.lsp.buf.implementation,          vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
