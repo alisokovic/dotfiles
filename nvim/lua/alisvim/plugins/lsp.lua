@@ -49,9 +49,7 @@ vim.diagnostic.config({
     },
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("mini.completion").get_lsp_capabilities())
-
+local capabilities = require("mini.completion").get_lsp_capabilities()
 vim.lsp.config("*", { capabilities = capabilities })
 
 vim.lsp.config("lua_ls", {
@@ -81,10 +79,6 @@ lspsaga.setup({
     code_action = {
         show_server_name = true,
     },
-    hover = {
-        open_link = "gx",
-        border = "rounded",
-    },
     implement = {
         enable = false,
     },
@@ -93,27 +87,41 @@ lspsaga.setup({
     },
     ui = {
         theme = "serif",
+        border = "rounded",
     },
 })
 
 ---- Keymaps - Attached only when an LSP connects to buffer
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
-        local keymap = vim.keymap
-        local opts = { buffer = ev.buf }
+        local map = function(mode, lfs, rhs, desc)
+            vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc})
+        end
 
-        keymap.set("n", "gd",          vim.lsp.buf.definition,              vim.tbl_extend("force", opts, { desc = "Go to definition" }))
-        keymap.set("n", "<leader>gd",  "<cmd>Lspsaga peek_definition<CR>",  vim.tbl_extend("force", opts, { desc = "Lspsaga definition" }))
-        keymap.set("n", "<leader>gs",  "<cmd>Lspsaga outline<CR>",          vim.tbl_extend("force", opts, { desc = "Lspsaga outline" }))
-        keymap.set("n", "gD",          vim.lsp.buf.declaration,             vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
-        keymap.set("n", "gr",          vim.lsp.buf.references,              vim.tbl_extend("force", opts, { desc = "Show references" }))
-        keymap.set("n", "gi",          vim.lsp.buf.implementation,          vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
-        keymap.set("n", "K",           "<cmd>Lspsaga hover_doc<CR>",        vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
-        keymap.set("n", "<leader>rn",  vim.lsp.buf.rename,                  vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-        keymap.set("n", "<leader>ca",  "<cmd>Lspsaga code_action<CR>",      vim.tbl_extend("force", opts, { desc = "Code actions" }))
-        keymap.set("n", "<leader>f",   vim.lsp.buf.format,                  vim.tbl_extend("force", opts, { desc = "Format buffer" }))
-        keymap.set("n", "<leader>df",  vim.diagnostic.open_float,           vim.tbl_extend("force", opts, { desc = "Show line diagnostic" }))
-        keymap.set("n", "]d",          vim.diagnostic.goto_next,            vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
-        keymap.set("n", "[d",          vim.diagnostic.goto_prev,            vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
+        map("n", "gd",          vim.lsp.buf.definition,               "Go to definition")
+        map("n", "<leader>gd",  "<cmd>Lspsaga peek_definition<CR>",   "Lspsaga definition")
+        map("n", "<leader>gs",  "<cmd>Lspsaga outline<CR>",           "Lspsaga outline")
+        map("n", "gD",          vim.lsp.buf.declaration,              "Go to declaration")
+        map("n", "gr",          vim.lsp.buf.references,               "Show references")
+        map("n", "gi",          vim.lsp.buf.implementation,           "Go to implementation")
+        map("n", "<leader>rn",  vim.lsp.buf.rename,                   "Rename symbol")
+        map("n", "<leader>ca",  "<cmd>Lspsaga code_action<CR>",       "Code actions")
+        map("n", "<leader>f",   vim.lsp.buf.format,                   "Format buffer")
+        map("n", "<leader>df",  vim.diagnostic.open_float,            "Show line diagnostic")
+        map("n", "]d",          vim.diagnostic.goto_next,             "Next diagnostic")
+        map("n", "[d",          vim.diagnostic.goto_prev,             "Previous diagnostic")
+
+        map("n", "K", function()
+            vim.lsp.buf.hover({
+                border = "rounded",
+            })
+        end, "LSP hover")
+
+        map({"n", "i"}, "<C-s>", function()
+            vim.lsp.buf.signature_help({
+                border = "rounded",
+            })
+        end, "Signature help")
+
     end,
 })

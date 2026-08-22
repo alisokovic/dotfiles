@@ -3,8 +3,14 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets",
 })
 
+---- Mini Icons ----
+local MiniIcons = require("mini.icons")
+MiniIcons.setup()
+MiniIcons.tweak_lsp_kind()
+
 ---- Mini Notify ----
-require("mini.notify").setup({
+local notify = require("mini.notify")
+notify.setup({
     -- only show messages
     content = {
         format = function(notif)
@@ -12,6 +18,7 @@ require("mini.notify").setup({
         end,
     },
 })
+vim.notify = notify.make_notify()
 
 ---- Mini CmdLine Completion ----
 require("mini.cmdline").setup({
@@ -46,6 +53,12 @@ local MiniSnippets = require("mini.snippets")
 MiniSnippets.setup({
     snippets = {
         MiniSnippets.gen_loader.from_lang(), -- loads friendly-snippets
+    },
+    mappings = {
+        expand = "<C-j>",
+        jump_next = "<Tab>",
+        jump_prev = "<S-Tab>",
+        stop = "<Esc>",
     },
 })
 MiniSnippets.start_lsp_server({ match = false })
