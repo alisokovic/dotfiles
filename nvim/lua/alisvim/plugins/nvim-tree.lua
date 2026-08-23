@@ -1,4 +1,4 @@
--- recommended settings from nvim-tree documentation
+-- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -7,9 +7,32 @@ vim.pack.add({
     { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 })
 
-local nvimtree = require("nvim-tree")
+local function my_on_attach(bufnr)
+    local api = require("nvim-tree.api")
 
-nvimtree.setup({
+    local function opts(desc)
+        return {
+            desc = "nvim-tree: " .. desc,
+            buffer = bufnr,
+            noremap = true,
+            silent = true,
+            nowait = true,
+        }
+    end
+
+    -- Apply the default mappings first
+    api.config.mappings.default_on_attach(bufnr)
+
+    -- Remove the default <C-v> mapping
+    vim.keymap.del("n", "<C-v>", { buffer = bufnr })
+
+    -- Remap vertical split to another key
+    vim.keymap.set("n", "<C-s>", api.node.open.vertical, opts("Open: Vertical Split"))
+end
+
+
+require("nvim-tree").setup({
+    on_attach = my_on_attach,
     view = {
         width = 33,
         relativenumber = true,
