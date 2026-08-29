@@ -8,18 +8,6 @@ local MiniIcons = require("mini.icons")
 MiniIcons.setup()
 MiniIcons.tweak_lsp_kind()
 
----- Mini Notify ----
-local notify = require("mini.notify")
-notify.setup({
-    -- only show messages
-    content = {
-        format = function(notif)
-            return notif.msg
-        end,
-    },
-})
-vim.notify = notify.make_notify()
-
 ---- Mini CmdLine Completion ----
 require("mini.cmdline").setup({
     autocorrect = { enable = false },

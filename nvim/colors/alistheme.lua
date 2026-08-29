@@ -262,11 +262,26 @@ local highlights = {
     NvimTreeGitMerge       = { fg = palette.flamingo },
     NvimTreeGitRenamed     = { fg = palette.mauve },
 
-    -- ===========================
     -- LazyGit
-    -- ===========================
     LazyGitFloat   = { fg = palette.text, bg = palette.none },
     LazyGitBorder  = { fg = palette.blue, bg = palette.none },
+
+    -- Notify
+    NotifyERRORBorder = { fg = palette.red, bg = palette.none },
+    NotifyWARNBorder  = { fg = palette.yellow, bg = palette.none },
+    NotifyINFOBorder  = { fg = palette.sky, bg = palette.none },
+    NotifyDEBUGBorder = { fg = palette.overlay0, bg = palette.none },
+    NotifyTRACEBorder = { fg = palette.mauve, bg = palette.none },
+    NotifyERRORIcon   = { fg = palette.red },
+    NotifyWARNIcon    = { fg = palette.yellow },
+    NotifyINFOIcon    = { fg = palette.sky },
+    NotifyDEBUGIcon   = { fg = palette.overlay0 },
+    NotifyTRACEIcon   = { fg = palette.mauve },
+    NotifyERRORTitle  = { fg = palette.red, bold = true },
+    NotifyWARNTitle   = { fg = palette.yellow, bold = true },
+    NotifyINFOTitle   = { fg = palette.sky, bold = true },
+    NotifyDEBUGTitle  = { fg = palette.overlay0, bold = true },
+    NotifyTRACETitle  = { fg = palette.mauve, bold = true },
 }
 
 -- Apply highlights immediately when sourced

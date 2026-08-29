@@ -1,8 +1,11 @@
 vim.pack.add({
     "https://github.com/sphamba/smear-cursor.nvim",
     "https://github.com/windwp/nvim-autopairs",
+    "https://github.com/numtostr/comment.nvim",
+    "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
     "https://github.com/folke/which-key.nvim",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
+    "https://github.com/rcarriga/nvim-notify",
     "https://github.com/christoomey/vim-tmux-navigator",
     "https://github.com/folke/trouble.nvim",
     "https://github.com/stevearc/dressing.nvim",
@@ -12,9 +15,7 @@ vim.pack.add({
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/kdheepak/lazygit.nvim",
     "https://github.com/szw/vim-maximizer",
-    "https://github.com/numtostr/comment.nvim",
     "https://github.com/danymat/neogen",
-    "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
 })
 
@@ -33,12 +34,12 @@ local palette = {
     none     = "NONE",
 }
 
----- smear cursor ----
+---- Smear Cursor ----
 require("smear_cursor").setup({
     cursor_color = palette.cursor,
 })
 
----- autopairs ----
+---- Autopairs ----
 require("nvim-autopairs").setup({
     check_ts = true,
     ts_config = {
@@ -46,7 +47,15 @@ require("nvim-autopairs").setup({
     },
 })
 
----- which key ----
+---- Comment ----
+local comment = require("Comment")
+local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+
+comment.setup({
+    pre_hook = ts_context_commentstring.create_pre_hook()
+})
+
+---- Which Key ----
 vim.o.timeout = true
 vim.o.timeoutlen = 500
 require("which-key").setup({
@@ -55,12 +64,24 @@ require("which-key").setup({
     },
 })
 
----- indent blankline ----
+---- Indent Blankline ----
 require("ibl").setup({
     indent = { char = "┊" },
 })
 
----- trouble ----
+---- Notify ----
+local notify = require("notify")
+notify.setup({
+    timeout = 3000,
+    background_colour = "#000000"
+})
+vim.notify = notify
+
+vim.keymap.set("n", "<leader>nn", function()
+    notify.dismiss({ silent = true, pending = true })
+end, { desc = "Dismiss all notifications" })
+
+---- Trouble ----
 require("trouble").setup({
     focus = true,
 })
@@ -94,7 +115,7 @@ vim.keymap.set(
     { desc = "Open todos in trouble" }
 )
 
----- bufferline ----
+---- Bufferline ----
 require("bufferline").setup({
     options = {
         mode = "tabs",
@@ -150,7 +171,7 @@ require("bufferline").setup({
     },
 })
 
----- toggle-term ----
+---- Toggle-Term ----
 require("toggleterm").setup({
     direction = "float",
     size = function(term)
@@ -177,7 +198,7 @@ vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { 
 vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>",      { desc = "float terminal" })
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=tab<CR>",        { desc = "terminal in new tab" })
 
----- todo comments ----
+---- Todo Comments ----
 require("todo-comments").setup()
 
 -- TODO: todo comment
@@ -186,7 +207,7 @@ require("todo-comments").setup()
 -- PERF: perf comment
 -- NOTE: note comment
 
----- gitsigns ----
+---- Gitsigns ----
 require("gitsigns").setup({
     on_attach = function(bufnr)
         local gs = require("gitsigns")
@@ -231,22 +252,14 @@ require("gitsigns").setup({
     end,
 })
 
----- lazygit ----
+---- Lazygit ----
 vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "Open lazygit" })
 
 
----- vim maximizer ----
+---- Vim Maximizer ----
 vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
 
----- comment ----
-local comment = require("Comment")
-local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
-
-comment.setup({
-    pre_hook = ts_context_commentstring.create_pre_hook()
-})
-
----- neogen ----
+---- Neogen ----
 local neogen = require("neogen")
 neogen.setup({
     enabled = true,
@@ -261,7 +274,7 @@ neogen.setup({
 
 vim.keymap.set("n", "<leader>k", "<cmd>lua require('neogen').generate()<CR>", { desc = "Generate neogen documentation" })
 
----- render markdown ----
+---- Render Markdown ----
 require("render-markdown").setup({
     completions = {
         lsp = { enabled = true },
