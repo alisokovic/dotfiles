@@ -80,6 +80,9 @@ vim.lsp.enable({
     "marksman",
 })
 
+-- Explicitly keep ruff from starting as an LSP
+vim.lsp.enable("ruff", false)
+
 ---- LspSaga ----
 local lspsaga = require("lspsaga")
 lspsaga.setup({
