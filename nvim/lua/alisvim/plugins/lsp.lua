@@ -2,6 +2,7 @@ vim.pack.add({
     "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/mason-org/mason-lspconfig.nvim",
+    "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
     "https://github.com/nvimdev/lspsaga.nvim",
     "https://github.com/stevearc/conform.nvim",
 })
@@ -27,6 +28,14 @@ require("mason-lspconfig").setup({
         "marksman",
     },
     automatic_installation = true,
+})
+
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "ruff",
+    },
+    auto_update = false,
+    run_on_start = true,
 })
 
 local severity = vim.diagnostic.severity
@@ -96,7 +105,7 @@ lspsaga.setup({
 local conform = require("conform")
 conform.setup({
     formatters_by_ft = {
-        python = { "ruff_format" },
+        python = { "ruff_organize_imports", "ruff_format" },
     },
     default_format_opts = {
         lsp_format = "fallback",
