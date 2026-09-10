@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- delete text without saving to any register
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
+vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
 
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "clear search highlights" })
 
@@ -30,8 +30,8 @@ vim.keymap.set("x", "<bs>", "in", { remap = true, desc = "Shrink TS selection" }
 vim.keymap.set("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "move selected lines down" })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 
-vim.keymap.set("v", "<", "<gv", { desc = "Unindent and keep selection" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent and keep selection" })
+vim.keymap.set("x", "<", "<gv", { desc = "Unindent and keep selection" })
+vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines without moving the cursor" })
 

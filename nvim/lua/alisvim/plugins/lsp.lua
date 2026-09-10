@@ -3,6 +3,7 @@ vim.pack.add({
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/mason-org/mason-lspconfig.nvim",
     "https://github.com/nvimdev/lspsaga.nvim",
+    "https://github.com/stevearc/conform.nvim",
 })
 
 require("mason").setup({
@@ -91,6 +92,19 @@ lspsaga.setup({
     },
 })
 
+---- Conform ----
+local conform = require("conform")
+conform.setup({
+    formatters_by_ft = {
+        python = { "ruff_format" },
+    },
+    default_format_opts = {
+        lsp_format = "fallback",
+    },
+    notify_on_error = true,
+    notify_no_formatters = true,
+})
+
 ---- Keymaps - Attached only when an LSP connects to buffer
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
@@ -106,7 +120,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "gi",          vim.lsp.buf.implementation,           "Go to implementation")
         map("n", "<leader>rn",  vim.lsp.buf.rename,                   "Rename symbol")
         map("n", "<leader>ca",  "<cmd>Lspsaga code_action<CR>",       "Code actions")
-        map("n", "<leader>f",   vim.lsp.buf.format,                   "Format buffer")
         map("n", "<leader>df",  vim.diagnostic.open_float,            "Show line diagnostic")
         map("n", "]d",          vim.diagnostic.goto_next,             "Next diagnostic")
         map("n", "[d",          vim.diagnostic.goto_prev,             "Previous diagnostic")
@@ -122,6 +135,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 border = "rounded",
             })
         end, "Signature help")
+
+        map({"n", "x"}, "<leader>f", function()
+            conform.format({
+                async = true,
+                lsp_format = "fallback",
+            })
+        end, "Format buffer")
 
     end,
 })
