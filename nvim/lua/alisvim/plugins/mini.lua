@@ -8,13 +8,16 @@ local MiniIcons = require("mini.icons")
 MiniIcons.setup()
 MiniIcons.tweak_lsp_kind()
 
----- Mini CmdLine Completion ----
-require("mini.cmdline").setup({
-    autocorrect = { enable = false },
+---- Mini Pairs ----
+require("mini.pairs").setup()
+
+---- Mini Indentscope ----
+require("mini.indentscope").setup({
+    symbol = "│",
+    options = { try_as_border = true },
 })
 
 ---- Mini Surround ----
-require("mini.surround").setup()
 -- Default Keymaps
 -- | `sa` | Add surrounding or Direct with 'saiw' |
 -- | `sd` | Delete surrounding |
@@ -24,6 +27,32 @@ require("mini.surround").setup()
 -- | `sh` | Highlight surrounding |
 -- | `sn` | Update n_lines |
 -- | `l` / `n` | as suffix for prev/next |
+require("mini.surround").setup()
+
+---- Mini Move ----
+require("mini.move").setup({
+    mappings = {
+        -- Move visual selection in visual mode
+        left = "<M-Left>",
+        right = "<M-Right>",
+        up = "<M-Up>",
+        down = "<M-Down>",
+
+        -- Move current line in normal mode
+        line_left = "<M-Left>",
+        line_right = "<M-Right>",
+        line_up = "<M-Up>",
+        line_down = "<M-Down>",
+    },
+})
+
+---- Mini Jump ----
+require("mini.jump").setup()
+
+---- Mini CmdLine Completion ----
+require("mini.cmdline").setup({
+    autocorrect = { enable = false },
+})
 
 ---- Mini Completions ---- 
 require("mini.completion").setup({

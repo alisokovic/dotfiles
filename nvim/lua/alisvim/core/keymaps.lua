@@ -27,8 +27,9 @@ vim.keymap.set("n", "<Tab>", "van", { remap = true, desc = "Init TS selection" }
 vim.keymap.set("x", "<Tab>", "an", { remap = true, desc  = "Expand TS selection" })
 vim.keymap.set("x", "<bs>", "in", { remap = true, desc = "Shrink TS selection" })
 
-vim.keymap.set("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "move selected lines down" })
-vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
+-- I use mini.move for this from now on
+-- vim.keymap.set("v", "<M-Down>", ":m '>+1<cr>gv=gv", { desc = "move selected lines down" })
+-- vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 
 vim.keymap.set("x", "<", "<gv", { desc = "Unindent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })

@@ -38,6 +38,7 @@ local highlights = {
     NormalNC     = { fg = palette.text, bg = palette.none },
     SignColumn   = { fg = palette.subtext0, bg = palette.none },
     FoldColumn   = { fg = palette.overlay0, bg = palette.none },
+    Folded       = { fg = palette.overlay1, bg = palette.surface0, italic = true },
     EndOfBuffer  = { fg = palette.surface1, bg = palette.none },
     LineNr       = { fg = palette.overlay0, bg = palette.none },
     CursorLineNr = { fg = palette.peach, bold = true},
@@ -210,9 +211,10 @@ local highlights = {
     TelescopeResultsBorder   = { fg = palette.blue, bg = palette.none },
     TelescopePreviewBorder   = { fg = palette.blue, bg = palette.none },
 
-    -- Indent-Blankline
+    -- Indent-Blankline and Mini.Indentscope
+    MiniIndentscopeSymbol    = { fg = palette.lavender },
     IblIndent                = { link = "LineNr" },
-    IblWhiteSpace            = { link = "LineNr" },
+    IblWhitespace            = { link = "LineNr" },
 
     -- Mini.completion Signature Hint
     MiniCompletionActiveParameter  = { underline = true, sp = palette.peach },

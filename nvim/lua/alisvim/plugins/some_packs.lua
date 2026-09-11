@@ -1,10 +1,9 @@
 vim.pack.add({
     "https://github.com/sphamba/smear-cursor.nvim",
-    "https://github.com/windwp/nvim-autopairs",
+    "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/numtostr/comment.nvim",
     "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
     "https://github.com/folke/which-key.nvim",
-    "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/rcarriga/nvim-notify",
     "https://github.com/christoomey/vim-tmux-navigator",
     "https://github.com/folke/trouble.nvim",
@@ -39,12 +38,20 @@ require("smear_cursor").setup({
     cursor_color = palette.cursor,
 })
 
----- Autopairs ----
-require("nvim-autopairs").setup({
-    check_ts = true,
-    ts_config = {
-        lua = { "string" },
+-- Indent Blankline ----
+require("ibl").setup({
+    indent = {
+        char = "┊",
+        tab_char = "┊",
+        highlight = "IblIndent",
+        smart_indent_cap = true,
+        priority = 1,
     },
+    whitespace = {
+        highlight = "IblWhitespace",
+        remove_blankline_trail = true,
+    },
+    scope = { enabled = false },
 })
 
 ---- Comment ----
@@ -62,11 +69,6 @@ require("which-key").setup({
     win = {
         border = "rounded",
     },
-})
-
----- Indent Blankline ----
-require("ibl").setup({
-    indent = { char = "┊" },
 })
 
 ---- Notify ----
@@ -223,6 +225,7 @@ require("gitsigns").setup({
         -- Actions
         map("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
         map("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
+
         map("v", "<leader>hs", function()
             gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, "Stage hunk")
@@ -236,16 +239,17 @@ require("gitsigns").setup({
         map("n", "<leader>hu", gs.undo_stage_hunk, "Undo stage hunk")
 
         map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
-
-        map("n", "<leader>hb", function()
-            gs.blame_line({ full = true })
-        end, "Blame line")
-        map("n", "<leader>hB", gs.toggle_current_line_blame, "Toggle line blame")
+        map("n", "<leader>hi", gs.preview_hunk_inline, "Preview hunk inline")
 
         map("n", "<leader>hd", gs.diffthis, "Diff this")
         map("n", "<leader>hD", function()
             gs.diffthis("~")
         end, "Diff this ~")
+
+        map("n", "<leader>hb", function()
+            gs.blame_line({ full = true })
+        end, "Blame line")
+        map("n", "<leader>hB", gs.toggle_current_line_blame, "Toggle line blame")
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Gitsigns select hunk")

@@ -13,9 +13,12 @@ telescope.setup({
         path_display = { "smart" },
         mappings = {
             i = {
-                ["<C-k>"] = actions.move_selection_previous,   -- move to prev result
-                ["<C-j>"] = actions.move_selection_next,       -- move to next result
-                ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<C-v>"] = false,
+                ["<C-s>"] = actions.select_vertical,
+            },
+            n = {
+                ["<C-v>"] = false,
+                ["<C-s>"] = actions.select_vertical,
             },
         },
     },
@@ -45,4 +48,4 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers,             { desc = "List op
 vim.keymap.set("n", "<leader>fh", builtin.help_tags,           { desc = "Search help tags" })
 vim.keymap.set("n", "<leader>fk", builtin.keymaps,             { desc = "Search keymaps" })
 vim.keymap.set("n", "<leader>fo", builtin.vim_options,         { desc = "Search vim options" })
-vim.keymap.set("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Search notification history" })
+vim.keymap.set("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Search notification history" })  -- requires nvim-notify

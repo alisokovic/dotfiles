@@ -35,7 +35,7 @@ require("nvim-tree").setup({
     on_attach = my_on_attach,
     view = {
         width = 33,
-        relativenumber = true,
+        relativenumber = false,
     },
     renderer = {
         indent_markers = {
