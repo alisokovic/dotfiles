@@ -17,6 +17,22 @@ require("mini.indentscope").setup({
     options = { try_as_border = true },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Disable mini.indentscope on specific filetypes.",
+    pattern = {
+        "NvimTree",
+        "alpha",
+        "help",
+        "mason",
+        "trouble",
+        "notify",
+        "toggleterm",
+    },
+    callback = function()
+        vim.b.miniindentscope_disable = true
+    end,
+})
+
 ---- Mini Surround ----
 -- Default Keymaps
 -- | `sa` | Add surrounding or Direct with 'saiw' |

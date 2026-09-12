@@ -30,11 +30,13 @@ require("mason-lspconfig").setup({
         "marksman",
     },
     automatic_installation = true,
+    automatic_enable = false,
 })
 
 require("mason-tool-installer").setup({
     ensure_installed = {
         "ruff",
+        "stylua",
     },
     auto_update = false,
     run_on_start = true,
@@ -61,9 +63,6 @@ vim.lsp.enable({
     "html",
     "marksman",
 })
-
--- Explicitly keep ruff from starting as an LSP
-vim.lsp.enable("ruff", false)
 
 ---- Diagnostics ----
 local severity = vim.diagnostic.severity
@@ -132,6 +131,7 @@ local conform = require("conform")
 conform.setup({
     formatters_by_ft = {
         python = { "ruff_organize_imports", "ruff_format" },
+        lua = { "stylua" },
     },
     default_format_opts = {
         lsp_format = "fallback",
