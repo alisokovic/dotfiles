@@ -1,12 +1,14 @@
 vim.pack.add({
-    "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/mason-org/mason-lspconfig.nvim",
     "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+    "https://github.com/neovim/nvim-lspconfig",
+    "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
     "https://github.com/nvimdev/lspsaga.nvim",
     "https://github.com/stevearc/conform.nvim",
 })
 
+---- Mason ----
 require("mason").setup({
     ui = {
         icons = {
@@ -38,27 +40,7 @@ require("mason-tool-installer").setup({
     run_on_start = true,
 })
 
-local severity = vim.diagnostic.severity
-
-vim.diagnostic.config({
-    virtual_text = true,
-    signs = {
-        text = {
-            [severity.ERROR] = "",
-            [severity.WARN] = "",
-            [severity.HINT] = "󰠠",
-            [severity.INFO] = "",
-        },
-    },
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-    float = {
-        border = "rounded",
-        source = true,
-    },
-})
-
+---- Nvim-lspconfig ----
 local capabilities = require("mini.completion").get_lsp_capabilities()
 vim.lsp.config("*", { capabilities = capabilities })
 
@@ -82,6 +64,47 @@ vim.lsp.enable({
 
 -- Explicitly keep ruff from starting as an LSP
 vim.lsp.enable("ruff", false)
+
+---- Diagnostics ----
+local severity = vim.diagnostic.severity
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = {
+        text = {
+            [severity.ERROR] = "",
+            [severity.WARN] = "",
+            [severity.HINT] = "󰠠",
+            [severity.INFO] = "",
+        },
+    },
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        border = "rounded",
+        source = true,
+    },
+})
+
+---- Tiny-Inline-Diagnostic ----
+require("tiny-inline-diagnostic").setup({
+    signs = {
+        left = "",
+        right = "",
+        arrow = "  ",
+        up_arrow = "  ",
+        vertical = " │",
+        vertical_end = " └",
+    },
+    options = {
+        use_icons_from_diagnostic = true,
+        multilines = {
+            enabled = true,
+            always_show = false,
+        },
+    },
+})
 
 ---- LspSaga ----
 local lspsaga = require("lspsaga")
@@ -121,7 +144,7 @@ conform.setup({
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local map = function(mode, lfs, rhs, desc)
-            vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc})
+            vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc })
         end
 
         map("n", "gd",          vim.lsp.buf.definition,               "Go to definition")

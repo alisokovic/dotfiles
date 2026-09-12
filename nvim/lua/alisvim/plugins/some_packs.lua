@@ -6,6 +6,8 @@ vim.pack.add({
     "https://github.com/folke/which-key.nvim",
     "https://github.com/rcarriga/nvim-notify",
     "https://github.com/christoomey/vim-tmux-navigator",
+    "https://github.com/szw/vim-maximizer",
+    "https://github.com/wansmer/treesj",
     "https://github.com/folke/trouble.nvim",
     "https://github.com/stevearc/dressing.nvim",
     "https://github.com/akinsho/bufferline.nvim",
@@ -13,7 +15,6 @@ vim.pack.add({
     "https://github.com/folke/todo-comments.nvim",
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/kdheepak/lazygit.nvim",
-    "https://github.com/szw/vim-maximizer",
     "https://github.com/danymat/neogen",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
 })
@@ -83,39 +84,66 @@ vim.keymap.set("n", "<leader>nn", function()
     notify.dismiss({ silent = true, pending = true })
 end, { desc = "Dismiss all notifications" })
 
+---- Vim Maximizer ----
+vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
+
+---- TreeSJ ----
+local tsj = require("treesj")
+tsj.setup({
+    use_default_keymaps = false,
+    max_join_length = 100,
+})
+
 ---- Trouble ----
 require("trouble").setup({
     focus = true,
 })
 
-vim.keymap.set(
-    "n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>",
-    { desc = "Workspace trouble diagnostics" }
-)
-vim.keymap.set(
-    "n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
-    { desc = "Buffer trouble diagnostics" }
-)
-vim.keymap.set(
-    "n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>",
-    { desc = "Trouble symbols" }
-)
-vim.keymap.set(
-    "n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
-    { desc = "Trouble LSP references" }
-)
-vim.keymap.set(
-    "n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>",
-    { desc = "Trouble location list" }
-)
-vim.keymap.set(
-    "n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>",
-    { desc = "Open trouble quickfix list" }
-)
-vim.keymap.set(
-    "n", "<leader>xt", "<cmd>Trouble todo toggle<CR>",
-    { desc = "Open todos in trouble" }
-)
+-- Keymaps attached only when an LSP connects to buffer
+-- Keymaps for TreeJS & Trouble
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        local map = function(mode, lfs, rhs, desc)
+            vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc })
+        end
+
+        -- TreeJS
+        map("n", "<leader>m", tsj.toggle, "Toggle split/join")
+        map("n", "<leader>M", function()
+            tsj.toggle({ split = { recursive = true } })
+        end, "Toggle split/join recursively")
+
+        -- Trouble
+        map( "n", "<leader>xx",
+            "<cmd>Trouble diagnostics toggle<CR>",
+            "Workspace diagnostics"
+        )
+        map( "n", "<leader>xX",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+            "Buffer diagnostics"
+        )
+        map( "n", "<leader>xs",
+            "<cmd>Trouble symbols toggle focus=false<CR>",
+            "Symbols"
+        )
+        map( "n", "<leader>xl",
+            "<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+            "LSP references"
+        )
+        map( "n", "<leader>xL",
+            "<cmd>Trouble loclist toggle<CR>",
+            "Location list"
+        )
+        map( "n", "<leader>xq",
+            "<cmd>Trouble qflist toggle<CR>",
+            "Quickfix list"
+        )
+        map( "n", "<leader>xt",
+            "<cmd>Trouble todo toggle<CR>",
+            "Todos in Trouble"
+        )
+    end
+})
 
 ---- Bufferline ----
 require("bufferline").setup({
@@ -258,10 +286,6 @@ require("gitsigns").setup({
 
 ---- Lazygit ----
 vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "Open lazygit" })
-
-
----- Vim Maximizer ----
-vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
 
 ---- Neogen ----
 local neogen = require("neogen")
