@@ -49,3 +49,13 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags,           { desc = "Search 
 vim.keymap.set("n", "<leader>fk", builtin.keymaps,             { desc = "Search keymaps" })
 vim.keymap.set("n", "<leader>fo", builtin.vim_options,         { desc = "Search vim options" })
 vim.keymap.set("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Search notification history" })  -- requires nvim-notify
+
+-- Keymaps when LSP is attached
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        vim.keymap.set("n", "<leader>fd",
+            builtin.diagnostics,
+            { buffer = ev.buf, desc = "Workspace diagnostics" }
+        )
+    end
+})

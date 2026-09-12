@@ -147,17 +147,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc })
         end
 
-        map("n", "gd",          vim.lsp.buf.definition,               "Go to definition")
-        map("n", "<leader>gd",  "<cmd>Lspsaga peek_definition<CR>",   "Lspsaga definition")
-        map("n", "<leader>gs",  "<cmd>Lspsaga outline<CR>",           "Lspsaga outline")
-        map("n", "gD",          vim.lsp.buf.declaration,              "Go to declaration")
-        map("n", "gr",          vim.lsp.buf.references,               "Show references")
-        map("n", "gi",          vim.lsp.buf.implementation,           "Go to implementation")
-        map("n", "<leader>rn",  vim.lsp.buf.rename,                   "Rename symbol")
-        map("n", "<leader>ca",  "<cmd>Lspsaga code_action<CR>",       "Code actions")
-        map("n", "<leader>df",  vim.diagnostic.open_float,            "Show line diagnostic")
-        map("n", "]d",          vim.diagnostic.goto_next,             "Next diagnostic")
-        map("n", "[d",          vim.diagnostic.goto_prev,             "Previous diagnostic")
+        map("n", "gd",          vim.lsp.buf.definition,             "Go to definition")
+        map("n", "<leader>gd",  "<cmd>Lspsaga peek_definition<CR>", "Lspsaga definition")
+        map("n", "<leader>gs",  "<cmd>Lspsaga outline<CR>",         "Lspsaga outline")
+        map("n", "gD",          vim.lsp.buf.declaration,            "Go to declaration")
+        map("n", "gr",          vim.lsp.buf.references,             "Show references")
+        map("n", "gi",          vim.lsp.buf.implementation,         "Go to implementation")
+        map("n", "<leader>rn",  vim.lsp.buf.rename,                 "Rename symbol")
+        map("n", "<leader>ca",  "<cmd>Lspsaga code_action<CR>",     "Code actions")
+        map("n", "<leader>df",  vim.diagnostic.open_float,          "Show line diagnostic")
+        map("n", "]d",          vim.diagnostic.goto_next,           "Next diagnostic")
+        map("n", "[d",          vim.diagnostic.goto_prev,           "Previous diagnostic")
 
         map("n", "K", function()
             vim.lsp.buf.hover({

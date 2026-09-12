@@ -1,10 +1,11 @@
 vim.pack.add({
     "https://github.com/sphamba/smear-cursor.nvim",
+    "https://github.com/rachartier/tiny-cmdline.nvim",
+    "https://github.com/folke/which-key.nvim",
+    "https://github.com/rcarriga/nvim-notify",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/numtostr/comment.nvim",
     "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
-    "https://github.com/folke/which-key.nvim",
-    "https://github.com/rcarriga/nvim-notify",
     "https://github.com/christoomey/vim-tmux-navigator",
     "https://github.com/szw/vim-maximizer",
     "https://github.com/wansmer/treesj",
@@ -39,6 +40,28 @@ require("smear_cursor").setup({
     cursor_color = palette.cursor,
 })
 
+---- Which Key ----
+vim.o.timeout = true
+vim.o.timeoutlen = 500
+require("which-key").setup({
+    win = {
+        border = "rounded",
+    },
+})
+
+---- Notify ----
+local notify = require("notify")
+notify.setup({
+    timeout = 3000,
+    background_colour = "#000000"
+})
+
+vim.notify = notify
+
+vim.keymap.set("n", "<leader>nn", function()
+    notify.dismiss({ silent = true, pending = true })
+end, { desc = "Dismiss all notifications" })
+
 -- Indent Blankline ----
 require("ibl").setup({
     indent = {
@@ -62,27 +85,6 @@ local ts_context_commentstring = require("ts_context_commentstring.integrations.
 comment.setup({
     pre_hook = ts_context_commentstring.create_pre_hook()
 })
-
----- Which Key ----
-vim.o.timeout = true
-vim.o.timeoutlen = 500
-require("which-key").setup({
-    win = {
-        border = "rounded",
-    },
-})
-
----- Notify ----
-local notify = require("notify")
-notify.setup({
-    timeout = 3000,
-    background_colour = "#000000"
-})
-vim.notify = notify
-
-vim.keymap.set("n", "<leader>nn", function()
-    notify.dismiss({ silent = true, pending = true })
-end, { desc = "Dismiss all notifications" })
 
 ---- Vim Maximizer ----
 vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
@@ -115,12 +117,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Trouble
         map( "n", "<leader>xx",
-            "<cmd>Trouble diagnostics toggle<CR>",
-            "Workspace diagnostics"
-        )
-        map( "n", "<leader>xX",
             "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
             "Buffer diagnostics"
+        )
+        map( "n", "<leader>xX",
+            "<cmd>Trouble diagnostics toggle<CR>",
+            "Workspace diagnostics"
         )
         map( "n", "<leader>xs",
             "<cmd>Trouble symbols toggle focus=false<CR>",
