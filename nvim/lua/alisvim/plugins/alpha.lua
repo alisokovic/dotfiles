@@ -24,8 +24,8 @@ dashboard.section.header.opts.hl = "AlphaHeader"
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button("e", "  > New File", "<cmd>ene<CR>"),
-    dashboard.button("t", "  > File Tree", "<cmd>NvimTreeToggle<CR>"),
+    dashboard.button("n", "  > New File", "<cmd>ene<CR>"),
+    dashboard.button("e", "  > File Tree", "<cmd>NvimTreeToggle<CR>"),
     dashboard.button("f", "󰱼  > Find File", "<cmd>Telescope find_files<CR>"),
     dashboard.button("r", "  > Recent Files", "<cmd>Telescope oldfiles<CR>"),
     dashboard.button("w", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
