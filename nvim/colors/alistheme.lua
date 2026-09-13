@@ -13,12 +13,14 @@ local palette = {
     overlay2  = "#9399b2",
     overlay1  = "#7f849c",
     overlay0  = "#6c7086",
+    surface2  = "#585b70",
     surface1  = "#45475a",
     surface0  = "#313244",
 
     flamingo  = "#f2cdcd",
     pink      = "#f5c2e7",
     mauve     = "#cba6f7",
+    muave_drk = "#493d6b",
     red       = "#f38ba8",
     dark_red  = "#c9476c",
     peach     = "#fab387",
@@ -54,7 +56,7 @@ local highlights = {
     -- Selections & Cursor line
     CursorLine   = { bg = palette.none, underline = true, sp = palette.peach },
     ColorColumn  = { bg = palette.surface0 },
-    Visual       = { bg = palette.surface1, bold = true },
+    Visual       = { bg = palette.muave_drk, bold = true },
     Search       = { fg = palette.surface0, bg = palette.yellow },
     IncSearch    = { fg = palette.surface0, bg = palette.peach },
 
