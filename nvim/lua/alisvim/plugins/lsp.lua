@@ -64,6 +64,27 @@ vim.lsp.enable({
     "marksman",
 })
 
+---- LspSaga ----
+local lspsaga = require("lspsaga")
+lspsaga.setup({
+    symbol_in_winbar = {
+        enable = false,
+    },
+    code_action = {
+        show_server_name = true,
+    },
+    implement = {
+        enable = false,
+    },
+    lightbulb = {
+        enable = false,
+    },
+    ui = {
+        theme = "serif",
+        border = "rounded",
+    },
+})
+
 ---- Diagnostics ----
 local severity = vim.diagnostic.severity
 
@@ -102,27 +123,6 @@ require("tiny-inline-diagnostic").setup({
             enabled = true,
             always_show = false,
         },
-    },
-})
-
----- LspSaga ----
-local lspsaga = require("lspsaga")
-lspsaga.setup({
-    symbol_in_winbar = {
-        enable = false,
-    },
-    code_action = {
-        show_server_name = true,
-    },
-    implement = {
-        enable = false,
-    },
-    lightbulb = {
-        enable = false,
-    },
-    ui = {
-        theme = "serif",
-        border = "rounded",
     },
 })
 
