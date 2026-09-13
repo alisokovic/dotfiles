@@ -44,6 +44,17 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result is cursor cen
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })
 
+-- Clear qflist and loclist
+vim.keymap.set("n", "<leader>qc", function()
+    vim.fn.setqflist({})
+    vim.notify("Quickfix list cleared", vim.log.levels.INFO)
+end, { desc = "Clear quickfix list"})
+
+vim.keymap.set("n", "<leader>lc", function()
+    vim.fn.setloclist(0, {})
+    vim.notify("location list cleared", vim.log.levels.INFO)
+end, { desc = "Clear loclist"})
+
 -- native undotree
 vim.keymap.set("n", "<leader>u", function()
     vim.cmd.packadd("nvim.undotree")

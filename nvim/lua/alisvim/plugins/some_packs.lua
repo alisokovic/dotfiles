@@ -10,6 +10,7 @@ vim.pack.add({
     "https://github.com/szw/vim-maximizer",
     "https://github.com/wansmer/treesj",
     "https://github.com/folke/trouble.nvim",
+    "https://github.com/stevearc/quicker.nvim",
     "https://github.com/stevearc/dressing.nvim",
     "https://github.com/akinsho/bufferline.nvim",
     "https://github.com/akinsho/toggleterm.nvim",
@@ -146,6 +147,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
         )
     end
 })
+
+---- Quicker ----
+local quicker = require("quicker")
+quicker.setup({
+    keys = {
+        {
+            ">",
+            function()
+                quicker.expand({ before = 2, after = 2, add_to_existing = true })
+            end,
+            desc = "Expand quickfix context",
+        },
+        {
+            "<",
+            function()
+                quicker.collapse()
+            end,
+            desc = "Collapse quickfix context",
+        },
+    },
+})
+
+vim.keymap.set("n", "<leader>qq", function()
+    require("quicker").toggle()
+end, { desc = "Toggle quickfix", })
+
+vim.keymap.set("n", "<leader>ll", function()
+    require("quicker").toggle({ loclist = true })
+end, { desc = "Toggle loclist", })
 
 ---- Bufferline ----
 require("bufferline").setup({
