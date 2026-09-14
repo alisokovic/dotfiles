@@ -222,12 +222,13 @@ local highlights = {
     MiniCompletionActiveParameter  = { underline = true, sp = palette.peach },
 
     -- Gitsigns SignColumn Highlights
-    GitSignsAdd                    = { fg = palette.green, bg = palette.none },
-    GitSignsChange                 = { fg = palette.blue, bg = palette.none },
-    GitSignsDelete                 = { fg = palette.red, bg = palette.none },
-    GitSignsChangedelete           = { fg = palette.peach, bg = palette.none },
-    GitSignsTopdelete              = { fg = palette.red, bg = palette.none },
-    GitSignsUntracked              = { fg = palette.teal, bg = palette.none },
+    GitSignsAdd              = { fg = palette.green, bg = palette.none },
+    GitSignsChange           = { fg = palette.blue, bg = palette.none },
+    GitSignsDelete           = { fg = palette.red, bg = palette.none },
+    GitSignsChangedelete     = { fg = palette.peach, bg = palette.none },
+    GitSignsTopdelete        = { fg = palette.red, bg = palette.none },
+    GitSignsUntracked        = { fg = palette.teal, bg = palette.none },
+    GitSignsCurrentLineBlame = { fg = palette.overlay2, bg = palette.none, italic = true },
 
     -- ===========================================
     -- NvimTree Sidebar Integration
