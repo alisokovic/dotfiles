@@ -3,12 +3,11 @@ vim.pack.add({
     "https://github.com/rachartier/tiny-cmdline.nvim",
     "https://github.com/folke/which-key.nvim",
     "https://github.com/rcarriga/nvim-notify",
+    "https://github.com/szw/vim-maximizer",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/numtostr/comment.nvim",
-    "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
-    "https://github.com/christoomey/vim-tmux-navigator",
-    "https://github.com/szw/vim-maximizer",
     "https://github.com/wansmer/treesj",
+    "https://github.com/abecodes/tabout.nvim",
     "https://github.com/folke/trouble.nvim",
     "https://github.com/stevearc/quicker.nvim",
     "https://github.com/stevearc/dressing.nvim",
@@ -64,6 +63,9 @@ vim.keymap.set("n", "<leader>nn", function()
     notify.dismiss({ silent = true, pending = true })
 end, { desc = "Dismiss all notifications" })
 
+---- Vim Maximizer ----
+vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
+
 -- Indent Blankline ----
 require("ibl").setup({
     indent = {
@@ -81,21 +83,18 @@ require("ibl").setup({
 })
 
 ---- Comment ----
-local comment = require("Comment")
-local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
-
-comment.setup({
-    pre_hook = ts_context_commentstring.create_pre_hook()
-})
-
----- Vim Maximizer ----
-vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
+require("Comment").setup()
 
 ---- TreeSJ ----
 local tsj = require("treesj")
 tsj.setup({
     use_default_keymaps = false,
     max_join_length = 100,
+})
+
+---- TabOut ----
+require("tabout").setup({
+    ignore_beginning = false,
 })
 
 ---- Trouble ----
