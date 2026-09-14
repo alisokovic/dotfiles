@@ -51,6 +51,7 @@ require("which-key").setup({
 })
 
 ---- Notify ----
+---@type any
 local notify = require("notify")
 notify.setup({
     timeout = 3000,
@@ -279,11 +280,24 @@ require("gitsigns").setup({
         end
 
         -- Navigation
-        map("n", "]h", gs.next_hunk, "Next hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
+        map("n", "]h", function()
+            if vim.wo.diff then
+                vim.cmd.normal({ "]c", bang = true })
+            else
+                gs.nav_hunk("next")
+            end
+        end, "Next hunk")
+
+        map("n", "[h", function()
+            if vim.wo.diff then
+                vim.cmd.normal({ "[c", bang = true })
+            else
+                gs.nav_hunk("prev")
+            end
+        end, "Previous hunk")
 
         -- Actions
-        map("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
+        map("n", "<leader>hs", gs.stage_hunk, "Stage/unstage hunk")
         map("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
 
         map("v", "<leader>hs", function()
@@ -295,8 +309,6 @@ require("gitsigns").setup({
 
         map("n", "<leader>hS", gs.stage_buffer, "Stage buffer")
         map("n", "<leader>hR", gs.reset_buffer, "Reset buffer")
-
-        map("n", "<leader>hu", gs.undo_stage_hunk, "Undo stage hunk")
 
         map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
         map("n", "<leader>hi", gs.preview_hunk_inline, "Preview hunk inline")

@@ -1,4 +1,5 @@
 require("alisvim.plugins.lualine")
+require("alisvim.plugins.sync_mode_hl")
 require("alisvim.plugins.alpha")
 require("alisvim.plugins.nvim-tree")
 require("alisvim.plugins.treesitter")

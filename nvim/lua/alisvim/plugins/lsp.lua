@@ -49,7 +49,9 @@ vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
-            diagnostics = { globals = { "vim" } },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true)
+            },
             telemetry = { enable = false },
         },
     },
@@ -155,9 +157,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "gi",          vim.lsp.buf.implementation,         "Go to implementation")
         map("n", "<leader>rn",  vim.lsp.buf.rename,                 "Rename symbol")
         map("n", "<leader>ca",  "<cmd>Lspsaga code_action<CR>",     "Code actions")
-        map("n", "<leader>df",  vim.diagnostic.open_float,          "Show line diagnostic")
-        map("n", "]d",          vim.diagnostic.goto_next,           "Next diagnostic")
-        map("n", "[d",          vim.diagnostic.goto_prev,           "Previous diagnostic")
 
         map("n", "K", function()
             vim.lsp.buf.hover({
@@ -171,7 +170,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             })
         end, "Signature help")
 
-        map({"n", "x"}, "<leader>f", function()
+        map({"n", "x"}, "<leader>cf", function()
             conform.format({
                 async = true,
                 lsp_format = "fallback",
