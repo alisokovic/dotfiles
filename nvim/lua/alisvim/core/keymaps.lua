@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- delete text without saving to any register
-vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
+-- vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
 
 vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "clear search highlights" })
 
@@ -21,11 +21,11 @@ vim.keymap.set({"n", "t"}, "<C-l>", "<cmd>wincmd l<CR>", { desc = "Move to the r
 vim.keymap.set({"n", "t"}, "<C-k>", "<cmd>wincmd k<CR>", { desc = "Move to the upper window" })
 vim.keymap.set({"n", "t"}, "<C-j>", "<cmd>wincmd j<CR>", { desc = "Move to the lower window" })
 
-vim.keymap.set("n", "<leader>bo", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-vim.keymap.set("n", "<leader>bx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-vim.keymap.set("n", "<leader>bn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-vim.keymap.set("n", "<leader>bp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-vim.keymap.set("n", "<leader>bf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+vim.keymap.set("n", "<leader>wo", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+vim.keymap.set("n", "<leader>wx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+vim.keymap.set("n", "<leader>wn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+vim.keymap.set("n", "<leader>wp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
+vim.keymap.set("n", "<leader>wf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 ---- Node Selection (Increment/Decrement) ----
 vim.keymap.set("n", "<Tab>", "van", { remap = true, desc = "Init TS selection" })
