@@ -99,7 +99,9 @@
     amend = commit --amend --no-edit
     undo = reset --soft HEAD~1
     last = show HEAD --stat
-    fixup = commit --fixup
+    fix = commit --fixup
+    fam = commit --fixup=amend:
+    fre = commit --fixup=reword:
     standup = log --since="yesterday" --author="alieren.tugay21@gmail.com" --oneline
 
     # Rebasing & Pushing
