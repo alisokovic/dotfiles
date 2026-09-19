@@ -1,27 +1,113 @@
 [user]
-	name = alisocan
-	email = alieren.tugay21@gmail.com
+    name = alisocan
+    email = alieren.tugay21@gmail.com
+
+[init]
+    defaultBranch = main
 
 [core]
     editor = nvim
     pager = delta
 
-[init]
-    defaultBranch = main
+[help]
+    autocorrect = prompt
+
+[column]
+    ui = auto
+
+[fetch]
+    prune = true
+    pruneTags = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+    useForceIfIncludes = true
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+    updateRefs = true
+
+[merge]
+    conflictStyle = zdiff3
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[commit]
+    verbose = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    mnemonicPrefix = true
 
 [interactive]
     diffFilter = delta --color-only
 
+[log]
+    date = human
+
+[blame]
+    coloring = highlightRecent
+
 [delta]
     navigate = true  # Use n and N to move between diff sections
     side-by-side = true
+    line-numbers = true
+    features = decorations
 
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
 
-[merge]
-    conflictStyle = zdiff3
+[delta "decorations"]
+    commit-decoration-style = bold yellow box
+    file-style = bold yellow ul
+    file-decoration-style = none
 
-[diff]
-    colorMoved = default
+[alias]
+    # Navigation & Status
+    st = status -sb
+    sw = switch
+    swc = switch -c
+    root = rev-parse --show-toplevel
+
+    # Diff & Staging
+    ds = diff --staged
+    ap = add -p
+    unstage = restore --staged
+    discard = restore
+
+    # Commits & History
+    amend = commit --amend --no-edit
+    undo = reset --soft HEAD~1
+    last = show HEAD --stat
+    fixup = commit --fixup
+    standup = log --since="yesterday" --author="alieren.tugay21@gmail.com" --oneline
+
+    # Rebasing & Pushing
+    ri = rebase -i @{u}
+    rc = rebase --continue
+    ra = rebase --abort
+    rs = rebase --skip
+    pf = push --force-with-lease
+
+    # Stashes
+    ss = stash push -m
+    sp = stash pop
+    sl = stash list --stat
+
+    # Logs
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+
+    # Housekeeping
+    gone = "!git fetch -p && git branch -vv | awk '/: gone\\]/{print $1}' | xargs -r git branch -d"
