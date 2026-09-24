@@ -335,15 +335,23 @@ local neogen = require("neogen")
 neogen.setup({
     enabled = true,
     languages = {
-        cpp = {
-            template = {
-                annotation_convention = "doxygen", --- forces doxygen style
-            },
-        },
+        lua = { template = { annotation_convention = "emmylua" } },
+        c = { template = { annotation_convention = "doxygen" } },
+        cpp = { template = { annotation_convention = "doxygen" } },
+        python = { template = { annotation_convention = "google_docstrings" } },
+        sh = { template = { annotation_convention = "google_bash" } },
     },
 })
 
-vim.keymap.set("n", "<leader>k", "<cmd>lua require('neogen').generate()<CR>", { desc = "Generate neogen documentation" })
+-- Keymap to generate annotation for function/class under cursor
+vim.keymap.set("n", "<leader>kc", function()
+    neogen.generate()
+end, { desc = "Generate neogen documentation" })
+
+-- Keymap to generate full file-level annotation
+vim.keymap.set("n", "<leader>kf", function()
+    neogen.generate({ type = "file" })
+end, { desc = "Generate file doc header" })
 
 ---- Render Markdown ----
 require("render-markdown").setup({
