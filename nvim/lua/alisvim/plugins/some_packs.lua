@@ -6,8 +6,8 @@ vim.pack.add({
     "https://github.com/szw/vim-maximizer",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/numtostr/comment.nvim",
-    "https://github.com/wansmer/treesj",
     "https://github.com/abecodes/tabout.nvim",
+    "https://github.com/wansmer/treesj",
     "https://github.com/folke/trouble.nvim",
     "https://github.com/stevearc/quicker.nvim",
     "https://github.com/stevearc/dressing.nvim",
@@ -66,7 +66,7 @@ end, { desc = "Dismiss all notifications" })
 ---- Vim Maximizer ----
 vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
 
--- Indent Blankline ----
+---- Indent Blankline ----
 require("ibl").setup({
     indent = {
         char = "┊",
@@ -85,16 +85,16 @@ require("ibl").setup({
 ---- Comment ----
 require("Comment").setup()
 
+---- TabOut ----
+require("tabout").setup({
+    ignore_beginning = false,
+})
+
 ---- TreeSJ ----
 local tsj = require("treesj")
 tsj.setup({
     use_default_keymaps = false,
     max_join_length = 100,
-})
-
----- TabOut ----
-require("tabout").setup({
-    ignore_beginning = false,
 })
 
 ---- Trouble ----
@@ -203,33 +203,32 @@ require("bufferline").setup({
             }
         },
     },
-
     highlights = {
-    -- Transparent Bar Fill
-    fill = { bg = palette.none },
+        -- Transparent Bar Fill
+        fill = { bg = palette.none },
 
-    -- Unselected / Inactive Tabs (Floating Text, No Dark Boxes)
-    background             = { fg = palette.overlay1, bg = palette.none },
-    buffer_visible         = { fg = palette.subtext0, bg = palette.none },
-    close_button           = { fg = palette.overlay1, bg = palette.none },
-    close_button_visible   = { fg = palette.subtext0, bg = palette.none },
-    separator              = { fg = palette.surface0, bg = palette.none },
-    separator_visible      = { fg = palette.surface0, bg = palette.none },
-    modified               = { fg = palette.peach, bg = palette.none },
-    modified_visible       = { fg = palette.peach, bg = palette.none },
+        -- Unselected / Inactive Tabs (Floating Text, No Dark Boxes)
+        background             = { fg = palette.overlay1, bg = palette.none },
+        buffer_visible         = { fg = palette.subtext0, bg = palette.none },
+        close_button           = { fg = palette.overlay1, bg = palette.none },
+        close_button_visible   = { fg = palette.subtext0, bg = palette.none },
+        separator              = { fg = palette.surface0, bg = palette.none },
+        separator_visible      = { fg = palette.surface0, bg = palette.none },
+        modified               = { fg = palette.peach, bg = palette.none },
+        modified_visible       = { fg = palette.peach, bg = palette.none },
 
-    -- Active / Selected Tab
-    buffer_selected        = { fg = palette.text, bg = palette.none, bold = true },
-    close_button_selected  = { fg = palette.red, bg = palette.none },
-    separator_selected     = { fg = palette.surface0, bg = palette.none },
-    indicator_selected     = { fg = palette.mauve, bg = palette.none },
-    modified_selected      = { fg = palette.peach, bg = palette.none },
+        -- Active / Selected Tab
+        buffer_selected        = { fg = palette.text, bg = palette.none, bold = true },
+        close_button_selected  = { fg = palette.red, bg = palette.none },
+        separator_selected     = { fg = palette.surface0, bg = palette.none },
+        indicator_selected     = { fg = palette.mauve, bg = palette.none },
+        modified_selected      = { fg = palette.peach, bg = palette.none },
 
-    -- Diagnostics inside Tabs
-    error             = { fg = palette.red, bg = palette.none },
-    error_selected    = { fg = palette.red, bg = palette.none, bold = true },
-    warning           = { fg = palette.yellow, bg = palette.none },
-    warning_selected  = { fg = palette.yellow, bg = palette.none, bold = true },
+        -- Diagnostics inside Tabs
+        error             = { fg = palette.red, bg = palette.none },
+        error_selected    = { fg = palette.red, bg = palette.none, bold = true },
+        warning           = { fg = palette.yellow, bg = palette.none },
+        warning_selected  = { fg = palette.yellow, bg = palette.none, bold = true },
     },
 })
 
