@@ -66,22 +66,6 @@ require("mini.move").setup({
 ---- Mini Jump ----
 require("mini.jump").setup()
 
----- Mini CmdLine Completion ----
-require("mini.cmdline").setup({
-    autocorrect = { enable = false },
-})
-
----- Mini Completions ---- 
-require("mini.completion").setup({
-    lsp_completion = {
-        auto_setup = true,
-    },
-    window = {
-        info      = { border = "rounded" },
-        signature = { border = "rounded" },
-    },
-})
-
 ---- Mini Snippets ----
 local MiniSnippets = require("mini.snippets")
 MiniSnippets.setup({
@@ -96,4 +80,3 @@ MiniSnippets.setup({
     },
 })
 MiniSnippets.start_lsp_server({ match = false })
-

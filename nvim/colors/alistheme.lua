@@ -231,6 +231,38 @@ local highlights = {
     GitSignsCurrentLineBlame = { fg = palette.overlay2, bg = palette.none, italic = true },
 
     -- ===========================================
+    -- Blink.cmp Highlights
+    -- ===========================================
+    -- Menu & floating window borders / selection
+    BlinkCmpMenu            = { fg = palette.text, bg = palette.none },
+    BlinkCmpMenuBorder      = { fg = palette.blue, bg = palette.none },
+    BlinkCmpMenuSelection   = { fg = palette.mauve, bg = palette.surface1, bold = true },
+    BlinkCmpScrollBarThumb  = { bg = palette.overlay0 },
+    BlinkCmpScrollBarGutter = { bg = palette.surface1 },
+
+    -- Documentation window
+    BlinkCmpDoc           = { fg = palette.text, bg = palette.none },
+    BlinkCmpDocBorder     = { fg = palette.blue, bg = palette.none },
+    BlinkCmpDocSeparator  = { fg = palette.blue, bg = palette.none },
+    BlinkCmpDocCursorLine = { bg = palette.surface0 },
+
+    -- Signature help window
+    BlinkCmpSignatureHelp                = { fg = palette.text, bg = palette.none },
+    BlinkCmpSignatureHelpBorder          = { fg = palette.blue, bg = palette.none },
+    BlinkCmpSignatureHelpActiveParameter = { fg = palette.peach, underline = true },
+
+    -- Completion item labels & matching characters
+    BlinkCmpLabel            = { fg = palette.text },
+    BlinkCmpLabelDeprecated  = { fg = palette.overlay0, strikethrough = true },
+    BlinkCmpLabelMatch       = { fg = palette.peach, bold = true },
+    BlinkCmpLabelDetail      = { fg = palette.overlay1 },
+    BlinkCmpLabelDescription = { fg = palette.overlay0 },
+
+    -- Source / provider badges
+    BlinkCmpSource    = { fg = palette.overlay1 },
+    BlinkCmpGhostText = { fg = palette.overlay0, italic = true },
+
+    -- ===========================================
     -- NvimTree Sidebar Integration
     -- ===========================================
     -- Window & Background (Fully Transparent)

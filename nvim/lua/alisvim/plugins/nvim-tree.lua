@@ -21,7 +21,7 @@ local function my_on_attach(bufnr)
     end
 
     -- Apply the default mappings first
-    api.config.mappings.default_on_attach(bufnr)
+    api.map.on_attach.default(bufnr)
 
     -- Remove the default <C-v> mapping
     vim.keymap.del("n", "<C-v>", { buffer = bufnr })
