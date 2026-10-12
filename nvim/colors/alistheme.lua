@@ -186,6 +186,9 @@ local highlights = {
     DiagnosticFloatingInfo       = { fg = palette.sky },
     DiagnosticFloatingHint       = { fg = palette.teal },
 
+    -- Inlay Hints
+    LspInlayHint                 = { fg = palette.overlay1, bg = palette.none, italic = true },
+
     -- Standard Vim Diff Groups
     DiffAdd                      = { fg = palette.green, bg = palette.none },
     DiffChange                   = { fg = palette.blue, bg = palette.none },

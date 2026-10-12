@@ -1,23 +1,21 @@
--- Build telescope-fzf-native after installation or update
-vim.api.nvim_create_autocmd("PackChanged", {
-    pattern = "telescope-fzf-native.nvim",
-    callback = function(ev)
-        local fzf_dir = vim.fs.joinpath(
-            vim.fn.stdpath("data"),
-            "site", "pack", "core", "opt",
-            "telescope-fzf-native.nvim"
-        )
+-- Helper function to compile telescope-fzf-native
+local function build_fzf(dir)
+    vim.notify("Building telescope-fzf-native...", vim.log.levels.INFO)
+    local res = vim.system({ "make" }, { cwd = dir }):wait()
+    if res.code == 0 then
+        vim.notify("telescope-fzf-native built successfully!", vim.log.levels.INFO)
+    else
+        vim.notify("Failed to build telescope-fzf-native:\n" .. (res.stderr or ""), vim.log.levels.ERROR)
+    end
+end
 
+-- Hook for future installs & updates via vim.pack
+vim.api.nvim_create_autocmd("PackChanged", {
+	callback = function(ev)
+        local name = ev.data.spec and ev.data.spec.name
         local kind = ev.data.kind
-        if kind == "install" or kind == "update" then
-            vim.notify("Building telescope-fzf-native...", vim.log.levels.INFO)
-            vim.system({ "make" }, { cwd = fzf_dir }, function(obj)
-                if obj.code == 0 then
-                    vim.notify("telescope-fzf-native built succesfully!", vim.log.levels.INFO)
-                else
-                    vim.notify("Failed to build telescope-fzf-native:\n" .. obj.stderr, vim.log.levels.ERROR)
-                end
-            end)
+        if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
+            build_fzf(ev.data.path)
         end
     end,
 })
@@ -27,6 +25,16 @@ vim.pack.add({
     "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
     "https://github.com/nvim-telescope/telescope.nvim",
 })
+
+-- Fallback: Build once if binary is currently missing
+local fzf_path = vim.fs.joinpath(
+    vim.fn.stdpath("data"),
+    "site", "pack", "core", "opt",
+    "telescope-fzf-native.nvim"
+)
+if vim.uv.fs_stat(fzf_path) and not vim.uv.fs_stat(vim.fs.joinpath(fzf_path, "build", "libfzf.so")) then
+    build_fzf(fzf_path)
+end
 
 local telescope = require("telescope")
 local actions = require("telescope.actions")
@@ -76,9 +84,6 @@ vim.keymap.set("n", "<leader>fn", "<cmd>Telescope notify<CR>", { desc = "Search 
 -- Keymaps when LSP is attached
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
-        vim.keymap.set("n", "<leader>fd",
-            builtin.diagnostics,
-            { buffer = ev.buf, desc = "Workspace diagnostics" }
-        )
-    end
+        vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { buffer = ev.buf, desc = "Workspace diagnostics" })
+    end,
 })

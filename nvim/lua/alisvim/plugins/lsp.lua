@@ -26,10 +26,10 @@ require("mason").setup({
 require("mason-lspconfig").setup({
     ensure_installed = {
         "lua_ls",
-        "pyright",
+        "basedpyright",
+        "ruff",
         "clangd",
         "bashls",
-        "html",
         "marksman",
     },
     automatic_installation = true,
@@ -38,8 +38,8 @@ require("mason-lspconfig").setup({
 
 require("mason-tool-installer").setup({
     ensure_installed = {
-        "ruff",
         "stylua",
+        "clang-format",
     },
     auto_update = false,
     run_on_start = true,
@@ -74,12 +74,47 @@ vim.lsp.config("lua_ls", {
     },
 })
 
+vim.lsp.config("basedpyright", {
+    settings = {
+        basedpyright = {
+            analysis = {
+                typeCheckingMode = "standard",
+            },
+        },
+    },
+})
+
+vim.lsp.config("ruff", {
+    on_attach = function(client)
+        client.server_capabilities.hoverProvider = false
+    end,
+})
+
+vim.lsp.config("clangd", {
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--fallback-style=llvm",
+        "--query-driver=/usr/bin/gcc,/usr/bin/g++",
+    },
+    root_markers = {
+        "compile_commands.json",
+        "compile_flags.txt",
+        ".clangd",
+        ".git",
+    },
+})
+
 vim.lsp.enable({
     "lua_ls",
-    "pyright",
+    "basedpyright",
+    "ruff",
     "clangd",
     "bashls",
-    "html",
     "marksman",
 })
 
@@ -157,8 +192,7 @@ cmp.setup({
 })
 
 ---- LspSaga ----
-local lspsaga = require("lspsaga")
-lspsaga.setup({
+require("lspsaga").setup({
     symbol_in_winbar = {
         enable = false,
     },
@@ -224,6 +258,8 @@ conform.setup({
     formatters_by_ft = {
         python = { "ruff_organize_imports", "ruff_format" },
         lua = { "stylua" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
     },
     default_format_opts = {
         lsp_format = "fallback",
@@ -254,6 +290,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
             })
         end, "LSP hover")
 
+        map("n", "<leader>ci", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end, "Toggle inlay hints")
+
         map({"n", "x"}, "<leader>cf", function()
             conform.format({
                 async = true,
@@ -261,5 +301,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
             })
         end, "Format buffer")
 
+    end,
+})
+
+-- C/C++ only keymaps
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp" },
+    callback = function(ev)
+		vim.keymap.set(
+			"n",
+			"<leader>ch",
+			"<cmd>ClangdSwitchSourceHeader<CR>",
+			{ buffer = ev.buf, desc = "Switch header/source" }
+		)
     end,
 })
