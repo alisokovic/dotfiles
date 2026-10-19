@@ -32,6 +32,9 @@ vim.keymap.set("n", "<Tab>", "van", { remap = true, desc = "Init TS selection" }
 vim.keymap.set("x", "<Tab>", "an", { remap = true, desc  = "Expand TS selection" })
 vim.keymap.set("x", "<bs>", "in", { remap = true, desc = "Shrink TS selection" })
 
+-- Set <C-i> back to its own keymap
+vim.keymap.set("n", "<C-i>", "<C-i>", { desc = "Jump forward" })
+
 -- I use mini.move for this from now on
 -- vim.keymap.set("v", "<M-Down>", ":m '>+1<cr>gv=gv", { desc = "move selected lines down" })
 -- vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })

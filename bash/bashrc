@@ -40,6 +40,7 @@ alias tree="eza --tree --icons=always"
 alias vim=nvim
 alias lg=lazygit
 alias fuzzy="fzf --ansi --style minimal --preview '$show_file_or_dir_preview'"
+alias nf=fastfetch
 # ----------------------------------
 
 # Homebrew

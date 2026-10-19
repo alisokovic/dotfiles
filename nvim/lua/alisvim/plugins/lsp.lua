@@ -303,16 +303,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     end,
 })
-
--- C/C++ only keymaps
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp" },
-    callback = function(ev)
-		vim.keymap.set(
-			"n",
-			"<leader>ch",
-			"<cmd>ClangdSwitchSourceHeader<CR>",
-			{ buffer = ev.buf, desc = "Switch header/source" }
-		)
-    end,
-})
