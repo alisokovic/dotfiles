@@ -90,7 +90,7 @@ local highlights = {
     Comment      = { fg = palette.overlay1, italic = true },
     Constant     = { fg = palette.peach },
     String       = { fg = palette.green },
-    Character    = { fg = palette.teal },
+    Character    = { fg = palette.green },
     Number       = { fg = palette.peach },
     Boolean      = { fg = palette.peach },
     Float        = { fg = palette.peach },
@@ -334,6 +334,15 @@ local highlights = {
     NotifyINFOTitle   = { fg = palette.sky, bold = true },
     NotifyDEBUGTitle  = { fg = palette.overlay0, bold = true },
     NotifyTRACETitle  = { fg = palette.mauve, bold = true },
+
+    -- Rainbow Delimiters
+    RainbowDelimiterRed    = { fg = palette.red },
+    RainbowDelimiterYellow = { fg = palette.yellow },
+    RainbowDelimiterPink   = { fg = palette.pink },
+    RainbowDelimiterOrange = { fg = palette.peach },
+    RainbowDelimiterGreen  = { fg = palette.green },
+    RainbowDelimiterViolet = { fg = palette.mauve },
+    RainbowDelimiterCyan   = { fg = palette.teal },
 }
 
 -- Apply highlights immediately when sourced

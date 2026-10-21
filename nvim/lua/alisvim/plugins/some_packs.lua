@@ -5,6 +5,7 @@ vim.pack.add({
     "https://github.com/rcarriga/nvim-notify",
     "https://github.com/szw/vim-maximizer",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
+    "https://github.com/hiphish/rainbow-delimiters.nvim",
     "https://github.com/numtostr/comment.nvim",
     "https://github.com/abecodes/tabout.nvim",
     "https://github.com/wansmer/treesj",
@@ -80,6 +81,27 @@ require("ibl").setup({
         remove_blankline_trail = true,
     },
     scope = { enabled = false },
+})
+
+---- Rainbow Delimiters ----
+require("rainbow-delimiters.setup").setup({
+    strategy = {
+        [""] = "rainbow-delimiters.strategy.global",
+        vim = "rainbow-delimiters.strategy.local",
+    },
+    query = {
+        [""] = "rainbow-delimiters",
+        lua = "rainbow-blocks",
+    },
+    highlight = {
+        "RainbowDelimiterRed",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterPink",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterGreen",
+        "RainbowDelimiterViolet",
+        "RainbowDelimiterCyan",
+    },
 })
 
 ---- Comment ----
