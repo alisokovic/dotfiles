@@ -30,6 +30,7 @@ local palette = {
     sky       = "#89dceb",
     blue      = "#89b4fa",
     lavender  = "#b4befe",
+    maroon    = "#eba0ac",
 
     none      = "NONE",
 }
@@ -44,6 +45,9 @@ local highlights = {
     EndOfBuffer  = { fg = palette.surface1, bg = palette.none },
     LineNr       = { fg = palette.overlay0, bg = palette.none },
     CursorLineNr = { fg = palette.peach, bold = true},
+    MatchParen   = { fg = palette.peach, bg = palette.surface1, bold = true },
+    NonText      = { fg = palette.surface2 },
+    WhiteSpace   = { fg = palette.surface2 },
 
     -- WinBar & Window Headers
     WinBar          = { fg = palette.text, bg = palette.none },
@@ -58,12 +62,15 @@ local highlights = {
     ColorColumn  = { bg = palette.surface0 },
     Visual       = { bg = palette.muave_drk, bold = true },
     Search       = { fg = palette.surface0, bg = palette.yellow },
+    CurSearch    = { fg = palette.surface0, bg = palette.red, bold = true },
     IncSearch    = { fg = palette.surface0, bg = palette.peach },
+    Substitute   = { fg = palette.surface0, bg = palette.pink, bold = true },
 
     -- Floating Windows
     NormalFloat  = { fg = palette.text, bg = palette.none },
     FloatBorder  = { fg = palette.blue, bg = palette.none },
     FloatTitle   = { fg = palette.mauve, bg = palette.none, bold = true },
+    FloatShadow  = { bg = palette.none },
 
     -- Completition Popup Menu
     Pmenu         = { fg = palette.text, bg = palette.surface0 },
@@ -100,38 +107,46 @@ local highlights = {
     Special      = { fg = palette.pink },
     Underlined   = { underline = true },
 
-    -- ===================================================================
-    -- Conditionals & Loops (Italicized across all languages)
-    -- ===================================================================
-    ["@keyword.conditional"]       = { fg = palette.mauve, italic = true },
-    ["@keyword.repeat"]            = { fg = palette.mauve, italic = true },
+    -- ==============
+    --      LSP
+    -- ==============
+    LspInlayHint = { fg = palette.overlay1, bg = palette.none, italic = true },
 
-    -- ===================================================================
+    -- General Tree-sitter & Semantic Tokens (Cross-language)
+    ["@variable"]              = { fg = palette.text },
+    ["@variable.builtin"]      = { fg = palette.red, italic = true },
+    ["@variable.parameter"]    = { fg = palette.maroon },
+    ["@variable.member"]       = { fg = palette.lavender },
+    ["@property"]              = { fg = palette.lavender },
+    ["@module"]                = { fg = palette.yellow, italic = true },
+    ["@keyword.return"]        = { fg = palette.mauve, italic = true },
+    ["@function.macro"]        = { fg = palette.peach, bold = true },
+
+    -- Conditionals & Loops
+    ["@keyword.conditional"]   = { fg = palette.mauve, italic = true },
+    ["@keyword.repeat"]        = { fg = palette.mauve, italic = true },
+
     -- Punctuation & Bracket Differentiation
-    -- ===================================================================
-    ["@punctuation.delimiter"]     = { fg = palette.overlay2 },
-    ["@punctuation.bracket"]       = { fg = palette.lavender },
+    ["@punctuation.delimiter"] = { fg = palette.overlay2 },
+    ["@punctuation.bracket"]   = { fg = palette.lavender },
 
-    -- ==========================================
     -- C / C++ Specific Highlights
-    -- ==========================================
-    ["@keyword.directive.cpp"]        = { fg = palette.pink, italic = true },
-    ["@keyword.directive.define.cpp"] = { fg = palette.pink, italic = true },
-    ["@keyword.import.cpp"]           = { fg = palette.pink, italic = true },
-    ["@lsp.type.parameter.cpp"]       = { fg = palette.lavender },
-    ["@type.builtin.cpp"]             = { fg = palette.red },
-    ["@constant.macro.cpp"]           = { fg = palette.mauve, bold = true },
-    ["@operator.cpp"]                 = { fg = palette.sky },
-    ["@punctuation.bracket.cpp"]      = { fg = palette.red },
+    ["@keyword.directive.cpp"]             = { fg = palette.pink, italic = true },
+    ["@keyword.directive.define.cpp"]      = { fg = palette.pink, italic = true },
+    ["@keyword.import.cpp"]                = { fg = palette.pink, italic = true },
+    ["@lsp.type.parameter.cpp"]            = { fg = palette.lavender },
+    ["@lsp.type.macro.cpp"]                = { fg = palette.peach, bold = true },
+    ["@lsp.type.enumMember.cpp"]           = { fg = palette.teal },
+    ["@lsp.typemod.variable.readonly.cpp"] = { fg = palette.peach },
+    ["@type.builtin.cpp"]                  = { fg = palette.red },
+    ["@constant.macro.cpp"]                = { fg = palette.mauve, bold = true },
+    ["@operator.cpp"]                      = { fg = palette.sky },
 
-    -- ==========================================
     -- Python Specific Highlights
-    -- ==========================================
-    ["@attribute.python"]             = { fg = palette.blue, italic = true },
-    ["@variable.builtin.python"]      = { fg = palette.red, italic = true },
-    ["@function.builtin.python"]      = { fg = palette.teal },
-    ["@keyword.import.python"]        = { fg = palette.mauve, bold = true },
-    ["@string.documentation.python"]  = { fg = palette.overlay2, italic = true },
+    ["@attribute.python"]                  = { fg = palette.blue, italic = true },
+    ["@variable.builtin.python"]           = { fg = palette.red, italic = true },
+    ["@function.builtin.python"]           = { fg = palette.teal },
+    ["@keyword.import.python"]             = { fg = palette.mauve, bold = true },
 
     -- ===================================================================
     -- Messages, Command Output & UI2 Pager
@@ -185,9 +200,6 @@ local highlights = {
     DiagnosticFloatingWarn       = { fg = palette.yellow },
     DiagnosticFloatingInfo       = { fg = palette.sky },
     DiagnosticFloatingHint       = { fg = palette.teal },
-
-    -- Inlay Hints
-    LspInlayHint                 = { fg = palette.overlay1, bg = palette.none, italic = true },
 
     -- Standard Vim Diff Groups
     DiffAdd                      = { fg = palette.green, bg = palette.none },
