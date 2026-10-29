@@ -95,12 +95,12 @@ require("rainbow-delimiters.setup").setup({
     },
     highlight = {
         "RainbowDelimiterRed",
-        "RainbowDelimiterYellow",
-        "RainbowDelimiterPink",
         "RainbowDelimiterOrange",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterCyan",
         "RainbowDelimiterGreen",
         "RainbowDelimiterViolet",
-        "RainbowDelimiterCyan",
+        "RainbowDelimiterPink",
     },
 })
 

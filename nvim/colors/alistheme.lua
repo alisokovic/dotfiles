@@ -134,7 +134,6 @@ local highlights = {
     ["@keyword.directive.cpp"]             = { fg = palette.pink, italic = true },
     ["@keyword.directive.define.cpp"]      = { fg = palette.pink, italic = true },
     ["@keyword.import.cpp"]                = { fg = palette.pink, italic = true },
-    ["@lsp.type.parameter.cpp"]            = { fg = palette.lavender },
     ["@lsp.type.macro.cpp"]                = { fg = palette.peach, bold = true },
     ["@lsp.type.enumMember.cpp"]           = { fg = palette.teal },
     ["@lsp.typemod.variable.readonly.cpp"] = { fg = palette.peach },
@@ -337,12 +336,12 @@ local highlights = {
 
     -- Rainbow Delimiters
     RainbowDelimiterRed    = { fg = palette.red },
-    RainbowDelimiterYellow = { fg = palette.yellow },
-    RainbowDelimiterPink   = { fg = palette.pink },
     RainbowDelimiterOrange = { fg = palette.peach },
+    RainbowDelimiterYellow = { fg = palette.yellow },
+    RainbowDelimiterCyan   = { fg = palette.teal },
     RainbowDelimiterGreen  = { fg = palette.green },
     RainbowDelimiterViolet = { fg = palette.mauve },
-    RainbowDelimiterCyan   = { fg = palette.teal },
+    RainbowDelimiterPink   = { fg = palette.pink },
 }
 
 -- Apply highlights immediately when sourced
