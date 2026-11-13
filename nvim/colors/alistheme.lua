@@ -134,7 +134,7 @@ local highlights = {
     ["@keyword.directive.cpp"]             = { fg = palette.pink, italic = true },
     ["@keyword.directive.define.cpp"]      = { fg = palette.pink, italic = true },
     ["@keyword.import.cpp"]                = { fg = palette.pink, italic = true },
-    ["@lsp.type.macro.cpp"]                = { fg = palette.peach, bold = true },
+    ["@lsp.type.macro.cpp"]                = { fg = palette.blue, bold = true },
     ["@lsp.type.enumMember.cpp"]           = { fg = palette.teal },
     ["@lsp.typemod.variable.readonly.cpp"] = { fg = palette.peach },
     ["@type.builtin.cpp"]                  = { fg = palette.red },
