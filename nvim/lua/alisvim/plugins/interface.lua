@@ -15,6 +15,12 @@ require("smear_cursor").setup({
     cursor_color = "#C4206F",
 })
 
+---- Tiny CmdLine ----
+local tiny_cmdline = require("tiny-cmdline")
+tiny_cmdline.setup({
+    on_reposition = tiny_cmdline.adapters.blink,
+})
+
 ---- Which Key ----
 vim.o.timeout = true
 vim.o.timeoutlen = 500

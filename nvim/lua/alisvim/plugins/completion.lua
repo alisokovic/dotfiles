@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
             pcall(vim.cmd.packadd, "blink.cmp")
             require("blink.cmp").build():pwait()
         end
-    end
+    end,
 })
 
 vim.pack.add({
