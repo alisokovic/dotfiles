@@ -157,18 +157,12 @@ end
 api.nvim_create_autocmd("LspProgress", {
     callback = function(args)
         local value = args.data.params.value
-        if value == nil then return end
+        if not value then return end
 
-        local title = value.title
-        local percent = value.percentage or 0
-        local is_running = true
+        local title = value.title or "LSP"
+        local is_running = value.kind ~= "end"
+        local percent = value.percentage or (is_running and 0 or 100)
 
-        if percent > 95 and percent <= 100 then
-            is_running = false
-        end
-
-        if percent > 0 then
-            progress(percent, title, is_running)
-        end
+        progress(percent, title, is_running)
     end
 })
