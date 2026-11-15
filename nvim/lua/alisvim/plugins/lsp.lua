@@ -54,7 +54,7 @@ vim.lsp.config("lua_ls", {
                 version = "LuaJIT",
                 path = { "lua/?.lua", "lua/?/init.lua" },
             },
-            diagnostic = {
+            diagnostics = {
                 globals = { "vim" },
             },
             workspace = {
