@@ -12,5 +12,23 @@ require("vim._core.ui2").enable({
 
 vim.cmd.colorscheme "alistheme"
 
-require("alisvim.core")
-require("alisvim.plugins")
+-- Core Config
+require("alisvim.core.options")
+require("alisvim.core.autocmds")
+require("alisvim.core.keymaps")
+require("alisvim.core.pack")
+
+-- Plugins Config
+require("alisvim.plugins.mini")
+require("alisvim.plugins.treesitter")
+require("alisvim.plugins.bars")
+require("alisvim.plugins.dashboard")
+require("alisvim.plugins.interface")
+require("alisvim.plugins.nvim-tree")
+require("alisvim.plugins.telescope")
+require("alisvim.plugins.completion")
+require("alisvim.plugins.lsp")
+require("alisvim.plugins.diagnostics")
+require("alisvim.plugins.editing")
+require("alisvim.plugins.git")
+require("alisvim.plugins.debug")
