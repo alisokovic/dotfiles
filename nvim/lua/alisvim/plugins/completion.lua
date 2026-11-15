@@ -1,3 +1,16 @@
+-- Hook for future installs & updates via vim.pack
+vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(ev)
+        local name = ev.data.spec and ev.data.spec.name
+        local kind = ev.data.kind
+        if name == "blink.cmp" and (kind == "install" or kind == "update") then
+            pcall(vim.cmd.packadd, "blink.lib")
+            pcall(vim.cmd.packadd, "blink.cmp")
+            require("blink.cmp").build():pwait()
+        end
+    end
+})
+
 vim.pack.add({
     "https://github.com/saghen/blink.lib",
     "https://github.com/saghen/blink.cmp",
@@ -6,7 +19,21 @@ vim.pack.add({
 
 ---- Blink Completion ----
 local cmp = require("blink.cmp")
-cmp.build():pwait()
+
+-- Fallback: Build once if the native Rust library is currently missing
+local blink_path = vim.fs.joinpath(
+    vim.fn.stdpath("data"),
+    "site", "pack", "core",
+    "opt", "blink.cmp"
+)
+local fuzzy_lib = vim.fs.joinpath(
+    blink_path, "target", "release",
+    "libblink_cmp_fuzzy.so"
+)
+if vim.uv.fs_stat(blink_path) and not vim.uv.fs_stat(fuzzy_lib) then
+    cmp.build():pwait()
+end
+
 cmp.setup({
     completion = {
         trigger = {
