@@ -50,6 +50,23 @@ require("trouble").setup({
     focus = true,
 })
 
+-- Global keymaps
+vim.keymap.set(
+    "n", "<leader>xq",
+    "<cmd>Trouble qflist toggle<CR>",
+    { desc = "Quickfix list" }
+)
+vim.keymap.set(
+    "n", "<leader>xL",
+    "<cmd>Trouble loclist toggle<CR>",
+    { desc = "Location list" }
+)
+vim.keymap.set(
+    "n", "<leader>xt",
+    "<cmd>Trouble todo toggle<CR>",
+    { desc = "Todos in trouble" }
+)
+
 -- Keymaps attached only when an LSP connects to buffer
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
@@ -72,18 +89,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map( "n", "<leader>xl",
             "<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
             "LSP references"
-        )
-        map( "n", "<leader>xL",
-            "<cmd>Trouble loclist toggle<CR>",
-            "Location list"
-        )
-        map( "n", "<leader>xq",
-            "<cmd>Trouble qflist toggle<CR>",
-            "Quickfix list"
-        )
-        map( "n", "<leader>xt",
-            "<cmd>Trouble todo toggle<CR>",
-            "Todos in Trouble"
         )
     end
 })
@@ -110,11 +115,11 @@ quicker.setup({
 })
 
 vim.keymap.set("n", "<leader>qq", function()
-    require("quicker").toggle()
+    quicker.toggle()
 end, { desc = "Toggle quickfix", })
 
 vim.keymap.set("n", "<leader>ll", function()
-    require("quicker").toggle({ loclist = true })
+    quicker.toggle({ loclist = true })
 end, { desc = "Toggle loclist", })
 
 ---- Lsp Progress ----

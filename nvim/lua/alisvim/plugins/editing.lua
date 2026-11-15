@@ -22,19 +22,15 @@ tsj.setup({
     max_join_length = 100,
 })
 
--- Keymaps attached only when an LSP connects to buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(ev)
-        local map = function(mode, lfs, rhs, desc)
-            vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc })
-        end
+-- Keymap setter
+local map = function(mode, lfs, rhs, desc)
+    vim.keymap.set(mode, lfs, rhs, { desc = desc })
+end
 
-        map("n", "<leader>m", tsj.toggle, "Toggle split/join")
-        map("n", "<leader>M", function()
-            tsj.toggle({ split = { recursive = true } })
-        end, "Toggle split/join recursively")
-    end
-})
+map("n", "<leader>m", tsj.toggle, "Toggle split/join")
+map("n", "<leader>M", function()
+    tsj.toggle({ split = { recursive = true } })
+end, "Toggle split/join recursively")
 
 ---- Todo Comments ----
 require("todo-comments").setup()
@@ -59,14 +55,14 @@ neogen.setup({
 })
 
 -- Keymap to generate annotation for function/class under cursor
-vim.keymap.set("n", "<leader>kc", function()
+map("n", "<leader>kc", function()
     neogen.generate()
-end, { desc = "Generate neogen documentation" })
+end, "Generate neogen documentation")
 
 -- Keymap to generate full file-level annotation
-vim.keymap.set("n", "<leader>kf", function()
+map("n", "<leader>kf", function()
     neogen.generate({ type = "file" })
-end, { desc = "Generate file doc header" })
+end, "Generate file doc header")
 
 ---- Render Markdown ----
 require("render-markdown").setup({

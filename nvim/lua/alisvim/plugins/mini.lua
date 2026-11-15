@@ -79,4 +79,3 @@ MiniSnippets.setup({
         stop = "<Esc>",
     },
 })
-MiniSnippets.start_lsp_server({ match = false })
