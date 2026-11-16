@@ -3,7 +3,6 @@ vim.pack.add({
     "https://github.com/rachartier/tiny-cmdline.nvim",
     "https://github.com/folke/which-key.nvim",
     "https://github.com/rcarriga/nvim-notify",
-    "https://github.com/szw/vim-maximizer",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/hiphish/rainbow-delimiters.nvim",
     "https://github.com/stevearc/dressing.nvim",
@@ -43,9 +42,6 @@ vim.notify = notify
 vim.keymap.set("n", "<leader>nn", function()
     notify.dismiss({ silent = true, pending = true })
 end, { desc = "Dismiss all notifications" })
-
----- Vim Maximizer ----
-vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" })
 
 ---- Indent Blankline ----
 require("ibl").setup({

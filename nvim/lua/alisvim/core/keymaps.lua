@@ -1,3 +1,13 @@
+local function split_maxmin()
+    if vim.w.maximized then
+        vim.cmd("wincmd =")
+        vim.w.maximized = false
+    else
+        vim.cmd("wincmd | | wincmd _")
+        vim.w.maximized = true
+    end
+end
+
 vim.g.mapleader = " "
 
 -- delete text without saving to any register
@@ -10,6 +20,8 @@ vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }
 vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+vim.keymap.set("n", "<leader>sm", split_maxmin, { desc = "Maximize/minimize split" })
+vim.keymap.set("n", "<F3>", split_maxmin, { desc = "Maximize/minimize split" })
 
 vim.keymap.set("n", "<C-Up>", "<cmd>resize -2<CR>")
 vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>")
