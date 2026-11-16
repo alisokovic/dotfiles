@@ -29,7 +29,14 @@ local ensure_installed = {
     "dockerfile",
 }
 
-treesitter.install(ensure_installed)
+local installed = require("nvim-treesitter.config").get_installed()
+local to_install = vim.tbl_filter(function(lang)
+    return not vim.tbl_contains(installed, lang)
+end, ensure_installed)
+
+if #to_install > 0 then
+    treesitter.install(to_install)
+end
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
