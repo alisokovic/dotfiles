@@ -111,7 +111,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     callback = function()
         local mode_key = vim.api.nvim_get_mode().mode:sub(1, 1)
         local lualine_mode = mode_map[mode_key] or "normal"
-        local hl = vim.api.nvim_get_hl(0, { name = "lualine_a_" .. lualine_mode, link = false})
+        local hl = vim.api.nvim_get_hl(0, { name = "lualine_a_" .. lualine_mode, link = false })
 
         if hl and hl.bg then
             vim.api.nvim_set_hl(0, "CursorLineNr", { fg = hl.bg, bold = true })

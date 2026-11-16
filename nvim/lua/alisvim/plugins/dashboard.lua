@@ -18,7 +18,7 @@ dashboard.section.header.val = {
 }
 
 -- Set header color (as the same as lualine)
-local lualine_hl = vim.api.nvim_get_hl(0, { name = "lualine_a_normal" })
+local lualine_hl = vim.api.nvim_get_hl(0, { name = "lualine_a_normal", link = false })
 vim.api.nvim_set_hl(0, "AlphaHeader", { fg = lualine_hl.bg, bold = true })
 dashboard.section.header.opts.hl = "AlphaHeader"
 
