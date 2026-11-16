@@ -4,17 +4,7 @@ vim.pack.add({
 })
 
 ---- Colors ----
-local palette = {
-    text     = "#cdd6f4",
-    subtext0 = "#a6adc8",
-    overlay1 = "#7f849c",
-    surface0 = "#313244",
-    mauve    = "#cba6f7",
-    red      = "#f38ba8",
-    yellow   = "#f9e2af",
-    peach    = "#fab387",
-    none     = "NONE",
-}
+local palette = require("alisvim.palette")
 
 ---- LuaLine ----
 require("lualine").setup({

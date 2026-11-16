@@ -9,9 +9,12 @@ vim.pack.add({
     "https://github.com/akinsho/toggleterm.nvim",
 })
 
+-- Colors
+local palette = require("alisvim.palette")
+
 ---- Smear Cursor ----
 require("smear_cursor").setup({
-    cursor_color = "#C4206F",
+    cursor_color = palette.cursor,
 })
 
 ---- Tiny CmdLine ----
@@ -93,8 +96,8 @@ require("toggleterm").setup({
     shade_terminals = false,
     highlights = {
         FloatBorder = {
-            guifg = "#89b4fa",
-            guibg = "NONE",
+            guifg = palette.blue,
+            guibg = palette.none,
         },
     },
     float_opts = {

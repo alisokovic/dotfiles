@@ -19,15 +19,17 @@ require("mason").setup({
     };
 })
 
+local servers = {
+    "lua_ls",
+    "basedpyright",
+    "ruff",
+    "clangd",
+    "bashls",
+    "marksman",
+}
+
 require("mason-lspconfig").setup({
-    ensure_installed = {
-        "lua_ls",
-        "basedpyright",
-        "ruff",
-        "clangd",
-        "bashls",
-        "marksman",
-    },
+    ensure_installed = servers,
     automatic_installation = true,
     automatic_enable = false,
 })
@@ -105,14 +107,7 @@ vim.lsp.config("clangd", {
     },
 })
 
-vim.lsp.enable({
-    "lua_ls",
-    "basedpyright",
-    "ruff",
-    "clangd",
-    "bashls",
-    "marksman",
-})
+vim.lsp.enable(servers)
 
 ---- LspSaga ----
 require("lspsaga").setup({
@@ -170,7 +165,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end, "LSP hover")
 
         map("n", "<leader>ci", function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf })
+            vim.lsp.inlay_hint.enable(not enabled, { bufnr = ev.buf })
         end, "Toggle inlay hints")
 
         map({"n", "x"}, "<leader>cf", function()

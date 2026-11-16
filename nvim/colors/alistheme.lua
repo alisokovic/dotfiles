@@ -6,34 +6,7 @@ end
 
 vim.g.colors_name = "alistheme"
 
--- Catppuccin Mocha Palette
-local palette = {
-    text      = "#cdd6f4",
-    subtext0  = "#a6adc8",
-    overlay2  = "#9399b2",
-    overlay1  = "#7f849c",
-    overlay0  = "#6c7086",
-    surface2  = "#585b70",
-    surface1  = "#45475a",
-    surface0  = "#313244",
-
-    flamingo  = "#f2cdcd",
-    pink      = "#f5c2e7",
-    mauve     = "#cba6f7",
-    muave_drk = "#493d6b",
-    red       = "#f38ba8",
-    dark_red  = "#c9476c",
-    peach     = "#fab387",
-    yellow    = "#f9e2af",
-    green     = "#a6e3a1",
-    teal      = "#94e2d5",
-    sky       = "#89dceb",
-    blue      = "#89b4fa",
-    lavender  = "#b4befe",
-    maroon    = "#eba0ac",
-
-    none      = "NONE",
-}
+local palette = require("alisvim.palette")
 
 local highlights = {
     -- Core Editor (Fully Transparent)
