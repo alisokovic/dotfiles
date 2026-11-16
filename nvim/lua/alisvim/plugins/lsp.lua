@@ -116,11 +116,9 @@ vim.lsp.enable({
 
 ---- LspSaga ----
 require("lspsaga").setup({
-    symbol_in_winbar = {
-        enable = false,
-    },
     code_action = {
         show_server_name = true,
+        extend_gitsigns = true,
     },
     implement = {
         enable = false,
@@ -129,7 +127,6 @@ require("lspsaga").setup({
         enable = false,
     },
     ui = {
-        theme = "serif",
         border = "rounded",
     },
 })
@@ -157,7 +154,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.keymap.set(mode, lfs, rhs, { buffer = ev.buf, desc = desc })
         end
 
-        map("n", "gd",          vim.lsp.buf.definition,             "Go to definition")
+        map("n", "gd",          "<cmd>Lspsaga goto_definition<CR>", "Go to definition")
         map("n", "<leader>gd",  "<cmd>Lspsaga peek_definition<CR>", "Lspsaga definition")
         map("n", "<leader>gs",  "<cmd>Lspsaga outline<CR>",         "Lspsaga outline")
         map("n", "gD",          vim.lsp.buf.declaration,            "Go to declaration")
