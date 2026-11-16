@@ -100,8 +100,8 @@
     undo = reset --soft HEAD~1
     last = show HEAD --stat
     fix = commit --fixup
-    fam = commit --fixup=amend:
-    fre = commit --fixup=reword:
+    fam = "!f() { git commit --fixup=amend:\"$1\" \"${@:2}\"; }; f"
+    fre = "!f() { git commit --fixup=reword:\"$1\" \"${@:2}\"; }; f"
     standup = log --since="yesterday" --author="alieren.tugay21@gmail.com" --oneline
 
     # Rebasing & Pushing
