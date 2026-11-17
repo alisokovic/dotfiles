@@ -1,35 +1,86 @@
 Dotfiles
 ========
 
-My own highly customized configuration files for my own use. It may give ideas for yours or you can copy any configuration altogether.
+My own small, opinionated set of personal dotfiles for a developer-focused terminal environment. It is tailored for a fast Bash workflow, a polished Git setup, and a modular Neovim configuration.
 
-Git
----
+## Overview
 
-I use [delta][delta] for git diffs. Make sure you installed it before.
+This repository contains the following configuration files:
 
-Bash
-----
+- `bash/bashrc` -- shell startup configuration, aliases, fzf integration, and prompt/tool setup
+- `git/gitconfig` -- Git defaults, aliases, signing, and diff/commit preferences
+- `nvim/` -- Neovim configuration with lots of plugins
+- `bat/config` -- `bat` syntax-highlighting defaults
 
-I use this [bashrc](bash/bashrc) file in archlinux. It is basically copied from [Josean Martinez's zshrc file](https://github.com/josean-dev/dev-environment-files/blob/main/.zshrc). Check his [tutorial video](https://www.youtube.com/watch?v=mmqDYw9C30I&t=798s) for more.
+## Installation
 
-### The list of packages needed:
+From the repository root, create the symlinks you need:
 
+```bash
+# Bash
+ln -sf "$PWD/bash/bashrc" ~/.bashrc
+
+# Git
+ln -sf "$PWD/git/gitconfig" ~/.gitconfig
+
+# Neovim
+mkdir -p ~/.config
+ln -sfn "$PWD/nvim" ~/.config/nvim
+
+# Bat
+mkdir -p ~/.config/bat
+ln -sfn "$PWD/bat/config" ~/.config/bat/config
+```
+
+Then reload the shell
+
+```bash
+source ~/.bashrc
+```
+
+## Included tooling and configuration
+
+### Bash
+
+- useful aliases like `ll`, `ls`, `tree`, `lg`
+- `fzf` integration with preview support
+- `fd` based path completion
+- `eza` for richer `ls` output
+- `bat` previews for files and directories
+- `oh-my-posh` prompt initalization
+- Homebrew and pyenv environment setup
+
+### Git
+
+- default branch set to `main`
+- editor set to `nvim`
+- `delta` as the pager
+- auto-prune fetch and auto-setup remote push
+- useful bunch of aliases
+- commit signing via SSH key configuration
+
+### Neovim
+
+Modular and deeply organized Neovim configuration optimized for transparent background. It contains a collection of plugin and core configs, including UI, LSP, completion, diagnostics, and git integration. It already preinstalls some LSPs and linters, so make sure to readjust that based on your needs through `Mason` or directly at `$PWD/nvim/lua/alisvim/plugins/lsp.lua`.
+
+![Screenshot](./assets/screenshot.png)
+
+### Bat
+
+The `bat` config customizes theme and output style to make terminal file previews cleaner and more readable.
+
+## Requirements
+
+This setup assumes the followings are available on your system:
+
+- Bash
+- Git
+- Neovim (v0.12+)
+- [fzf](https://github.com/junegunn/fzf)
 - [fd](https://github.com/sharkdp/fd)
 - [eza](https://github.com/eza-community/eza)
-- [bat][bat]
-- [fzf][fuzzy]
-- [Homebrew](https://github.com/homebrew/brew)
-- [oh-my-posh][ohmyposh]
-- [pyEnv](https://github.com/pyenv/pyenv): Comment it out if you don't use it
-
-Neovim
-------
-
-My higly configured little by little over a long period of time and perfectionized for my own use neovim config. It uses builtin nvim.pack as plugin manager. During installation, a C compiler (`gcc` or `clang`) and `make` are needed to build [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim). After installation, make sure you install required packages shown in `:checkhealth`. I recommend [PyLatexEnc](https://pypi.org/project/pylatexenc/) for parsing latex in markdown files.
-
-
-[delta]: https://github.com/dandavison/delta
-[fuzzy]: https://github.com/junegunn/fzf
-[ohmyposh]: https://github.com/jandedobbeleer/oh-my-posh
-[bat]: https://github.com/sharkdp/bat
+- [bat](https://github.com/sharkdp/bat)
+- [delta](https://github.com/dandavison/delta)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [oh-my-posh](https://github.com/jandedobbeleer/oh-my-posh)
+- [pyEnv](https://github.com/pyenv/pyenv) (Comment out if you don't use it)
