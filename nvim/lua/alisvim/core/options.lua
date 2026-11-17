@@ -1,15 +1,11 @@
-vim.g.netwr_banner = 0
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
-
 vim.opt.cursorline = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
@@ -27,6 +23,7 @@ vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
+vim.opt.updatetime = 250
 vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
 vim.opt.shortmess:append("c")
 vim.opt.clipboard:append("unnamedplus")
@@ -39,4 +36,4 @@ vim.opt.colorcolumn = "0"
 vim.opt.signcolumn = "yes"
 vim.opt.cmdheight = 0
 vim.opt.termguicolors = true
-vim.opt.fillchars = { eob = " " }
+vim.opt.fillchars = { eob = " ", fold = " ", diff = "/" }

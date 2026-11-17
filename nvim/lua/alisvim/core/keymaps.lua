@@ -13,7 +13,7 @@ vim.g.mapleader = " "
 -- delete text without saving to any register
 -- vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
 
-vim.keymap.set("n", "<leader>nh", ":nohl<cr>", { desc = "clear search highlights" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "clear search highlights" })
 
 -- window management
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -23,10 +23,10 @@ vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current spli
 vim.keymap.set("n", "<leader>sm", split_maxmin, { desc = "Maximize/minimize split" })
 vim.keymap.set("n", "<F3>", split_maxmin, { desc = "Maximize/minimize split" })
 
-vim.keymap.set("n", "<C-Up>", "<cmd>resize -2<CR>")
-vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>")
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>")
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
+vim.keymap.set("n", "<C-Up>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
 
 vim.keymap.set({"n", "t"}, "<C-h>", "<cmd>wincmd h<CR>", { desc = "Move to the left window" })
 vim.keymap.set({"n", "t"}, "<C-l>", "<cmd>wincmd l<CR>", { desc = "Move to the right window" })
