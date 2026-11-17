@@ -8,6 +8,7 @@ return {
     surface2  = "#585b70",
     surface1  = "#45475a",
     surface0  = "#313244",
+    mantle    = "#181825",
 
     flamingo  = "#f2cdcd",
     pink      = "#f5c2e7",
