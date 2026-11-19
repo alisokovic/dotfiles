@@ -81,6 +81,35 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Draw separator for output window
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("output_separator"),
+    pattern = { "pager", "dialog" },  -- can also add "msg"
+    callback = function(ev)
+        vim.schedule(function()
+            local ui2 = require("vim._core.ui2")
+            local win = (ui2.wins and ui2.wins[ev.match]) or vim.fn.bufwinid(ev.buf)
+            if not win or win == -1 or not vim.api.nvim_win_is_valid(win) then
+                return
+            end
+            if vim.api.nvim_win_get_config(win).relative == "" then
+                return
+            end
+
+            local config = {
+                border = { "", { "─", "FloatBorder" }, "", "", "", "", "", "" },
+            }
+
+            if ev.match == "pager" then
+                config.title = { { " Output ", "FloatTitle" } }
+                config.title_pos = "center"
+            end
+
+            vim.api.nvim_win_set_config(win, config)
+        end)
+    end,
+})
+
 -- Custom command to clear caches
 vim.api.nvim_create_user_command("ClearCaches", function ()
     vim.cmd("clearjumps")

@@ -36,4 +36,4 @@ vim.opt.colorcolumn = "0"
 vim.opt.signcolumn = "yes"
 vim.opt.cmdheight = 0
 vim.opt.termguicolors = true
-vim.opt.fillchars = { eob = " ", fold = " ", diff = "/" }
+vim.opt.fillchars = { eob = " ", fold = " ", diff = "/", msgsep = "─" }

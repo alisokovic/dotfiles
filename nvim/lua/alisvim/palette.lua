@@ -14,8 +14,9 @@ return {
     pink      = "#f5c2e7",
     mauve     = "#cba6f7",
     muave_drk = "#493d6b",
-    red       = "#f38ba8",
     dark_red  = "#c9476c",
+    red       = "#f38ba8",
+    maroon    = "#eba0ac",
     peach     = "#fab387",
     yellow    = "#f9e2af",
     green     = "#a6e3a1",
@@ -23,7 +24,6 @@ return {
     sky       = "#89dceb",
     blue      = "#89b4fa",
     lavender  = "#b4befe",
-    maroon    = "#eba0ac",
 
     cursor    = "#C4206F",
     none      = "NONE",

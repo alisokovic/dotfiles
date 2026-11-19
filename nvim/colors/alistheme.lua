@@ -125,7 +125,7 @@ local highlights = {
     -- ===================================================================
     -- Command Line & Message Area
     MsgArea         = { fg = palette.text, bg = palette.none },
-    MsgSeparator    = { fg = palette.surface0, bg = palette.none },
+    MsgSeparator    = { fg = palette.blue, bg = palette.none },
     ModeMsg         = { fg = palette.subtext0, bold = true },
     MoreMsg         = { fg = palette.blue },
     WarningMsg      = { fg = palette.yellow, bold = true },

@@ -124,8 +124,6 @@ end, { desc = "Toggle loclist", })
 
 ---- Lsp Progress ----
 local ui = require("vim._core.ui2")
-local api = vim.api
-
 ui.enable({
     msg = {
         targets = {
@@ -149,7 +147,7 @@ local function progress(percent, title, is_running)
     end
     i_frame = i_frame + 1
 
-    message_id = api.nvim_echo({ { title } }, false, {
+    message_id = vim.api.nvim_echo({ { title } }, false, {
         id = message_id,
         percent = percent,
         source = "lsp-progress",
@@ -159,7 +157,7 @@ local function progress(percent, title, is_running)
     })
 end
 
-api.nvim_create_autocmd("LspProgress", {
+vim.api.nvim_create_autocmd("LspProgress", {
     callback = function(args)
         local value = args.data.params.value
         if not value then return end
